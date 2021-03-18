@@ -7,6 +7,7 @@ class Engine
 {
 private:
 	std::unique_ptr<Grid> m_Grid;
+	sf::Texture m_Texture;
 
 	sf::RenderWindow m_Window;
 	void update(const sf::Time& gameTime);

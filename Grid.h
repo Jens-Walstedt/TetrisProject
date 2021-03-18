@@ -35,5 +35,6 @@ public:
 	Grid(sf::Vector2i size);
 	void update(const sf::Time& gameTime);
 	void draw(sf::RenderWindow& window);
+	Field* getField(int x, int y);
 };
 
