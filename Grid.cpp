@@ -32,11 +32,6 @@ void Grid::update(const sf::Time& gameTime)
 
 }
 
-//void Grid::addBlock(int id, std::array<sf::Vector2i, 4> block)
-//{
-//
-//}
-
 int Grid::convert2D_to_1D(int x, int y)
 {
     return y * m_Size.x + x;
@@ -44,5 +39,19 @@ int Grid::convert2D_to_1D(int x, int y)
 
 void Grid::draw(sf::RenderWindow& window)
 {
+    for (int x = 0; x < m_Size.x; ++x) {
+        for (int y = 0; y < m_Size.y; ++y) {
+            auto field = getField(x, y);
+            //if field has not been occupied yet, mInfo would be assigned to nullptr
+            if (field->m_Occupied && field->m_Visible) {
+                field->m_Info->m_Sprite.setPosition(x * 18.f, y * 18.f);
+                window.draw(field->m_Info->m_Sprite);
+            }
+        }
+    }
+}
 
+Field* Grid::getField(int x, int y)
+{
+    return m_Fields[convert2D_to_1D(x, y)].get();
 }
