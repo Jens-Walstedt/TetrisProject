@@ -6,13 +6,14 @@
 
 class Engine
 {
-public:
-	Engine();
-	void start();
-
 private:
+	sf::RenderWindow m_Window;
 	void update();
 	void events();
 	void render();
+
+public:
+	Engine();
+	void start();
 };
 
