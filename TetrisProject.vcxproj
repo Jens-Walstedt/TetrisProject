@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Movement.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Pictures\Tetris\Blocks.png" />

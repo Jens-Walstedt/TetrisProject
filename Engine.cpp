@@ -4,7 +4,6 @@
 Engine::Engine()
 {
 	m_Window.create(sf::VideoMode{500, 500}, "Tetris", sf::Style::Default);
-    
 }
 
 void Engine::start()

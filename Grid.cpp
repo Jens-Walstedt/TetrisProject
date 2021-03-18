@@ -1,4 +1,6 @@
 #include "Grid.h"
+#include "Engine.h"
+#include <iostream>
 
 FieldInfo::FieldInfo(sf::Texture& texture, int id)
 {
@@ -30,10 +32,10 @@ void Grid::update(const sf::Time& gameTime)
 
 }
 
-void Grid::addBlock(int id, std::array<sf::Vector2i, 4> block)
-{
-
-}
+//void Grid::addBlock(int id, std::array<sf::Vector2i, 4> block)
+//{
+//
+//}
 
 int Grid::convert2D_to_1D(int x, int y)
 {
