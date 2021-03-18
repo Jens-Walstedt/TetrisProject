@@ -153,6 +153,9 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Grid.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\Pictures\Tetris\Blocks.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

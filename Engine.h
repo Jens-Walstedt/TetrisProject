@@ -1,14 +1,15 @@
 #pragma once
-#include <SFML/System/Time.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics.hpp>
+
+#include "Grid.h"
 
 class Engine
 {
 private:
+	std::unique_ptr<Grid> m_Grid;
+
 	sf::RenderWindow m_Window;
-	void update();
+	void update(const sf::Time& gameTime);
 	void events();
 	void render();
 
