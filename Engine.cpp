@@ -45,6 +45,7 @@ void Engine::events()
         switch (Event.type) {
         case sf::Event::Closed:
             m_Window.close();
+            break;
         case sf::Event::KeyPressed:
             if(Event.key.code == sf::Keyboard::S){
                 //proceed(Direction::SoftDown);
@@ -55,7 +56,7 @@ void Engine::events()
             }else if (Event.key.code == sf::Keyboard::Space) {
                 //rotate();
             }
-
+            break;
         }
     }
 }
