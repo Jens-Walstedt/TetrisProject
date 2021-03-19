@@ -2,14 +2,18 @@
 #include <SFML/Graphics.hpp>
 #include "Movement.h"
 #include "Grid.h"
+#include "Tetromino.h"
 
 class Engine
 {
 private:
+	sf::Sprite m_BackgroundSprite; //TEST
+
 	sf::Time m_ElapsedTime;
 	std::unique_ptr<Grid> m_Grid;
 	sf::Texture m_Texture;
-	sf::Sprite m_BackgroundSprite;
+	std::unique_ptr<Tetromino> m_Tetromino;
+	
 
 	sf::RenderWindow m_Window;
 	void update(const sf::Time& gameTime);
@@ -19,8 +23,9 @@ private:
 	void proceed();		// TODO: call proceed logic
 	void Direction();	// TODO: call Direction logic
 
-	std::unique_ptr<Grid> m_Grid;
-	Highscore m_HighScore;	// TODO: call Highscore object
+	//Highscore m_HighScore;	// TODO: call Highscore object
+
+	
 
 
 public:
