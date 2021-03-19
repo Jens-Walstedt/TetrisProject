@@ -45,11 +45,11 @@ void Engine::events()
             m_Window.close();
         case sf::Event::KeyPressed:
             if(Event.key.code == sf::Keyboard::S){
-                proceed(Direction::SoftDown);
+                proceed(Movement::SoftDown);
             }else if (Event.key.code == sf::Keyboard::A) {
-                proceed(Direction::Right);
+                proceed(Movement::Right);
             }else if (Event.key.code == sf::Keyboard::D) {
-                proceed(Direction::Left);
+                proceed(Movement::Left);
             }else if (Event.key.code == sf::Keyboard::Space) {
                 rotate();
             }else if (Event.key.code == sf::Keyboard::P) {
