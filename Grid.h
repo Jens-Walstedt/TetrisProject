@@ -32,7 +32,7 @@ private:
 	bool m_RemoveBlocks;
 
 public:
-	Grid(sf::Vector2i size);
+	Grid(sf::Vector2i size, sf::Texture texture);
 	void addBlock(int id, std::array<sf::Vector2i, 4> block);
 	void update(const sf::Time& gameTime);
 	void draw(sf::RenderWindow& window);

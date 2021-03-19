@@ -12,8 +12,9 @@ void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 //public
 Tetromino::Tetromino(sf::Texture& texture, int id)
 {
-    id = 0;
-    m_Position = (sf::Vector2i(3, 0));
+    m_ID = id;
+    //TODO: TEST m_Position only (erase)
+    m_Position = (sf::Vector2i(5, 10));
     for (size_t i = 0; i < 4; i++)
     {
         m_Block[i].x = i;
@@ -30,5 +31,11 @@ void Tetromino::setPositionByFields(const sf::Vector2i& position)
 
 std::array<sf::Vector2i, 4> Tetromino::getBlockPositions() const
 {
-    return std::array<sf::Vector2i, 4>();
+    std::array<sf::Vector2i, 4> blockPositions;
+    for (size_t i = 0; i < 4; i++)
+    {
+        blockPositions[i].x = m_Block[i].x + m_Position.x;
+        blockPositions[i].y = m_Block[i].y + m_Position.y;
+    }
+    return blockPositions;
 }
