@@ -41,7 +41,7 @@ void Engine::events()
 void Engine::render()
 {
     m_Window.clear(sf::Color::Green);
-    //m_Grid->draw(m_Window);
+    m_Grid->draw(m_Window);
     m_Window.draw(m_BackgroundSprite);
     m_Window.display();
 }

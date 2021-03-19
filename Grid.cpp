@@ -32,6 +32,16 @@ void Grid::update(const sf::Time& gameTime)
 
 }
 
+void Grid::addBlock(int id, std::array<sf::Vector2i, 4> block) 
+{
+    for (int i = 0; i < 4; ++i) 
+    {
+        auto field = getField(block[i].x, block[i].y);
+        field->m_Occupied = true;
+        field->m_Info = m_FieldInfos[id].get();
+    }
+}
+
 int Grid::convert2D_to_1D(int x, int y)
 {
     return y * m_Size.x + x;
