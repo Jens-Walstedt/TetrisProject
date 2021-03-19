@@ -53,14 +53,14 @@ void Engine::events()
             }else if (Event.key.code == sf::Keyboard::D) {
                 //proceed(Direction::Left);
             }else if (Event.key.code == sf::Keyboard::Space) {
-                rotate();
+                //rotate();
+            }
 
         }
     }
 }
 
-void Engine::render()
-{
+void Engine::render(){
     m_Window.clear(sf::Color::Green);
     m_Grid->draw(m_Window);
     m_Window.draw(m_BackgroundSprite);
