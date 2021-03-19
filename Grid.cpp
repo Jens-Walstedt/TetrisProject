@@ -32,11 +32,6 @@ void Grid::update(const sf::Time& gameTime)
 
 }
 
-void Grid::addBlock(int id, std::array<sf::Vector2i, 4> block)
-{
-
-}
-
 int Grid::convert2D_to_1D(int x, int y)
 {
     return y * m_Size.x + x;

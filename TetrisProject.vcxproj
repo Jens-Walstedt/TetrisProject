@@ -150,11 +150,13 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="TetrisProject.cpp" />
+    <ClCompile Include="Tetromino.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Movement.h" />
+    <ClInclude Include="Tetromino.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Pictures\Tetris\Blocks.png" />
