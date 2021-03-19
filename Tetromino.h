@@ -3,6 +3,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <array>
+#include "Movement.h"
 
 
 class Tetromino : public sf::Drawable
@@ -18,5 +19,7 @@ public:
 	void setPositionByFields(const sf::Vector2i& position);
 	std::array<sf::Vector2i, 4> getBlockPositions() const;
 
+	void direction(Movement move);
+	void setPosition(const sf::Vector2i& position);
 };
 
