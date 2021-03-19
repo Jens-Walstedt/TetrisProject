@@ -11,6 +11,7 @@ Engine::Engine()
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 });
     
     m_BackgroundSprite.setTexture(m_Texture);
+    m_Tetromino.reset(new Tetromino(m_Texture, 7));
 }
 
 void Engine::start()
@@ -27,6 +28,7 @@ void Engine::start()
         render();
     }
 }
+
 
 void Engine::update(const sf::Time& gameTime)
 {
@@ -45,18 +47,16 @@ void Engine::events()
             m_Window.close();
         case sf::Event::KeyPressed:
             if(Event.key.code == sf::Keyboard::S){
-                proceed(Movement::SoftDown);
+                //proceed(Direction::SoftDown);
             }else if (Event.key.code == sf::Keyboard::A) {
-                proceed(Movement::Right);
+                //proceed(Direction::Right);
             }else if (Event.key.code == sf::Keyboard::D) {
-                proceed(Movement::Left);
+                //proceed(Direction::Left);
             }else if (Event.key.code == sf::Keyboard::Space) {
                 rotate();
 
         }
-
     }
-
 }
 
 void Engine::render()
