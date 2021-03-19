@@ -1,4 +1,6 @@
 #include "Tetromino.h"
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <iostream>
 
 //Private
 void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -12,7 +14,7 @@ void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 //public
 Tetromino::Tetromino(sf::Texture& texture, int id)
 {
-    m_ID = id;
+    m_Id = id;
     //TODO: TEST m_Position only (erase)
     m_Position = (sf::Vector2i(5, 10));
     for (size_t i = 0; i < 4; i++)
@@ -38,4 +40,25 @@ std::array<sf::Vector2i, 4> Tetromino::getBlockPositions() const
         blockPositions[i].y = m_Block[i].y + m_Position.y;
     }
     return blockPositions;
+}
+
+void Tetromino::direction(Movement move)
+{
+    if (move == Movement::Left)
+    {
+        m_Position.x--;
+    }
+    else if (move == Movement::Right)
+    {
+        m_Position.x++;
+    }
+    else
+    {
+        m_Position.y++;
+    }
+}
+
+void Tetromino::setPosition(const sf::Vector2i& position)
+{
+    m_Position = position;
 }
