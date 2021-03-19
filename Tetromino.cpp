@@ -1,6 +1,7 @@
 #include "Tetromino.h"
 
 //Private
+//TODO: does it do anything?
 void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for (size_t i = 0; i < 4; i++)
@@ -20,7 +21,6 @@ Tetromino::Tetromino(sf::Texture& texture, int id)
         m_Block[i].x = i;
         m_Block[i].y = 1;
     }
-       
 }
 
 void Tetromino::setPositionByFields(const sf::Vector2i& position)
