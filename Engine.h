@@ -3,6 +3,7 @@
 #include "Movement.h"
 #include "Grid.h"
 #include "Tetromino.h"
+#include "Highscore.h"
 
 class Engine
 {
@@ -20,7 +21,7 @@ private:
 	void events();
 	void render();
 	void rotate();		// TODO: call rotation logic
-	void proceed();		// TODO: call proceed logic
+	void proceed(Movement move);		// TODO: call proceed logic
 	void Direction();	// TODO: call Direction logic
 
 	//Highscore m_HighScore;	// TODO: call Highscore object
