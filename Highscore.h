@@ -10,11 +10,10 @@ private:
 	int m_Score;
 
 public:
-	Highscore();
 
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void update(const sf::Time& dt);
 	int getLvl();
-};
 
+};
