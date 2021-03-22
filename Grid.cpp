@@ -19,8 +19,8 @@ Field& Field::operator=(const Field& field)
 
 
 Grid::Grid(sf::Vector2i size, sf::Texture texture)
+    : m_Size(size)
 {
-    m_Size = size;
     for (int x = 0; x < size.x; ++x) {
         for (int y = 0; y < size.y; ++y) {
             m_Fields[convert2D_to_1D(x, y)] = std::make_unique<Field>();
