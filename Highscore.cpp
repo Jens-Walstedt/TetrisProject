@@ -4,7 +4,11 @@
 
 using namespace std;
 
-Highscore::Highscore() {
+Highscore::Highscore() : m_ScoreText() {
+	m_TotalScore = 0;
+	m_Score = 0;
+	m_LinesCleared = 0;
+
 	m_ScoreText.setStyle(sf::Text::Bold);
 	m_ScoreText.setCharacterSize(15);
 	m_ScoreText.setPosition(sf::Vector2f{0,0});

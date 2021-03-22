@@ -1,13 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+
 class Highscore
 {
 
 private:
-	sf::Font m_Font;
-	sf::Text m_LvlText;
+	//sf::Font m_Font;
+	//sf::Text m_LvlText;
 	sf::Text m_ScoreText;
-	sf::Text m_LinesClearedText;
+	//sf::Text m_LinesClearedText;
 
 	int m_Score;
 	int m_TotalScore;
