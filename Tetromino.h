@@ -15,11 +15,11 @@ private:
     std::array<sf::Vector2i, 4> m_Block;
     mutable sf::Sprite m_Sprite;
 public:
-	Tetromino(sf::Texture& texture, int id);
+	//Tetromino(sf::Texture& texture, int id);
 	void setPositionByFields(const sf::Vector2i& position);
 	std::array<sf::Vector2i, 4> getBlockPositions() const;
 
-	void direction(Movement move);
-	void setPosition(const sf::Vector2i& position);
+	//void direction(Movement move);
+	//void setPosition(const sf::Vector2i& position);
 };
 

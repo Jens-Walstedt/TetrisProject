@@ -13,7 +13,6 @@ private:
 	int m_LinesCleared;
 
 public:
-	Highscore();
 
 	void draw(sf::RenderWindow& window);
 	void reset();
@@ -23,4 +22,3 @@ public:
 	void update(const sf::Time& dt);
 	int getLvl() const;
 };
-
