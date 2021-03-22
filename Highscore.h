@@ -15,7 +15,7 @@ private:
 	int m_LinesCleared;
 
 public:
-
+	Highscore();
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void addScore(int m_Score);
