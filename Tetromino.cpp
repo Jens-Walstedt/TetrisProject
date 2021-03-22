@@ -30,8 +30,8 @@ Tetromino::Tetromino(sf::Texture& texture, int id)
 
 void Tetromino::setPositionByFields(const sf::Vector2i& position)
 {
-    m_Position.x = position.x * 18;
-    m_Position.y = position.y * 18;
+    m_Position.x = position.x * m_FieldSize;
+    m_Position.y = position.y * m_FieldSize;
 }
 
 std::array<sf::Vector2i, 4> Tetromino::getBlockPositions() const
@@ -49,15 +49,15 @@ void Tetromino::direction(Movement move)
 {
     if (move == Movement::Left)
     {
-        m_Position.x--;
+        m_Position.x -= m_FieldSize;
     }
     else if (move == Movement::Right)
     {
-        m_Position.x++;
+        m_Position.x += m_FieldSize;
     }
     else
     {
-        m_Position.y++;
+        m_Position.y += m_FieldSize;
     }
 }
 
