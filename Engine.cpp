@@ -90,3 +90,14 @@ void Engine::proceed(Movement move)
 {
     m_Tetromino->direction(move);
 }
+
+bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block){
+
+    for (int i = 0; i < 4; ++i) {
+        if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17) {
+            return false;
+        }
+    }
+
+
+}

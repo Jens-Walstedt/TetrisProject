@@ -25,6 +25,8 @@ private:
 	void proceed(Movement move);		// TODO: call proceed logic
 	void Direction();	// TODO: call Direction logic
 
+	bool CollisionDetection(std::array<sf::Vector2i, 4> block);
+
 	Highscore m_HighScore;
 
 	
