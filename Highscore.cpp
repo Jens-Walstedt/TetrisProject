@@ -31,7 +31,7 @@ void Highscore::update(const sf::Time& dt) {
 }
 
 
-int Highscore::getLvl() {
+int Highscore::getLvl() const {
 	int x = 1;
 	return x;
 }

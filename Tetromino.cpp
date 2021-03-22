@@ -9,6 +9,7 @@ void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
     for (size_t i = 0; i < 4; i++)
     {
         m_Sprite.setPosition(m_Block[i].x * 18 + m_Position.x, m_Block[i].y + m_Position.y);
+        target.draw(m_Sprite);
     }
 }
 
@@ -16,8 +17,10 @@ void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 Tetromino::Tetromino(sf::Texture& texture, int id)
 {
     m_Id = id;
+    
     //TODO: TEST m_Position only (erase)
     m_Position = (sf::Vector2i(5, 10));
+    m_Sprite = sf::Sprite(texture, sf::IntRect{ (id % 7) * 18, 0, 18, 18 });
     for (size_t i = 0; i < 4; i++)
     {
         m_Block[i].x = i;
