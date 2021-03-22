@@ -51,13 +51,20 @@ void Engine::events()
             m_Window.close();
             break;
         case sf::Event::KeyPressed:
-            if(Event.key.code == sf::Keyboard::S){
-                //proceed(Direction::SoftDown);
-            }else if (Event.key.code == sf::Keyboard::A) {
-                m_Tetromino->direction(Movement::Left);
-            }else if (Event.key.code == sf::Keyboard::D) {
-                m_Tetromino->direction(Movement::Right);
-            }else if (Event.key.code == sf::Keyboard::Space) {
+            if(Event.key.code == sf::Keyboard::S)
+            {
+                proceed(Movement::SoftDown);
+            }
+            else if (Event.key.code == sf::Keyboard::A) 
+            {
+                proceed(Movement::Left);
+            }
+            else if (Event.key.code == sf::Keyboard::D) 
+            {
+                proceed(Movement::Right);
+            }
+            else if (Event.key.code == sf::Keyboard::Space) 
+            {
                 //rotate();
             }
             break;
@@ -77,4 +84,9 @@ void Engine::render(){
 void Engine::createTetromino() {
     //TODO add random number for id.
     m_Tetromino.reset(new Tetromino{ m_Texture, 5});
+}
+
+void Engine::proceed(Movement move)
+{
+    m_Tetromino->direction(move);
 }

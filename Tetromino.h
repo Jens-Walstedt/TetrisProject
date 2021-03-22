@@ -9,11 +9,14 @@
 class Tetromino : public sf::Drawable
 {
 private:
+	int m_Id;
+	const int m_FieldSize;
+	sf::Vector2i m_Position;
+	std::array<sf::Vector2i, 4> m_Block;
+	mutable sf::Sprite m_Sprite;
+
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    sf::Vector2i m_Position;
-    int m_Id;
-    std::array<sf::Vector2i, 4> m_Block;
-    mutable sf::Sprite m_Sprite;
+    
 public:
 	Tetromino(sf::Texture& texture, int id);
 	void setPositionByFields(const sf::Vector2i& position);
