@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Pictures\Tetris\Blocks.png" />
+    <Image Include="TetrisTextur.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

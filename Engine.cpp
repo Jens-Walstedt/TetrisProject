@@ -6,8 +6,8 @@ Engine::Engine() :
 m_HighScore()
 {
     m_ElapsedTime = sf::Time::Zero;
-	m_Window.create(sf::VideoMode((10*18), (18*18)), "Tetris", sf::Style::Default);
-    if (!m_Texture.loadFromFile("Blocks.png")) {
+	m_Window.create(sf::VideoMode((10*36), (18*36)), "Tetris", sf::Style::Default);
+    if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_Texture);
