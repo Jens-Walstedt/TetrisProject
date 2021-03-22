@@ -31,7 +31,7 @@ private:
 
 
 public:
-	//Engine();
+	Engine();
 	void start();
 };
 
