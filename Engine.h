@@ -20,6 +20,7 @@ private:
 	void update(const sf::Time& gameTime);
 	void events();
 	void render();
+	void createTetromino();
 	void rotate();		// TODO: call rotation logic
 	void proceed(Movement move);		// TODO: call proceed logic
 	void Direction();	// TODO: call Direction logic
