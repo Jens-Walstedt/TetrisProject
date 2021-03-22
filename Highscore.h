@@ -3,12 +3,13 @@
 class Highscore
 {
 private:
-	sf::Font m_Font;
+	sf::Font m_Font;	// Where?
 	sf::Text m_LvlText;
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
 
 	int m_Score;
+	int m_TotalScore;
 	int m_BonusScore;
 	int m_LinesCleared;
 
@@ -16,9 +17,14 @@ public:
 
 	void draw(sf::RenderWindow& window);
 	void reset();
-	void addScore();
-	void sumScore();
-	void scoreSystem(int num);
+	void addScore(int m_Score);
+	//void sumScore();
+	//void scoreSystem(int num);
 	void update(const sf::Time& dt);
-	int getLvl() const;
+
+	int getLvl();
+
+};
+
+
 };
