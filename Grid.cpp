@@ -4,7 +4,7 @@
 
 FieldInfo::FieldInfo(sf::Texture& texture, int id)
 {
-    sf::IntRect rect{ (id % 7) * 18, 0, 18,18 };
+    sf::IntRect rect{ (id % 7) * 36, 0, 36, 36};
     m_Sprite.setTexture(texture);
     m_Sprite.setTextureRect(rect);
 }
@@ -59,7 +59,7 @@ void Grid::draw(sf::RenderWindow& window)
             auto field = getField(x, y);
             //if field has not been occupied yet, mInfo would be assigned to nullptr
             if (field->m_Occupied && field->m_Visible) {
-                field->m_Info->m_Sprite.setPosition(x * 18.f, y * 18.f);
+                field->m_Info->m_Sprite.setPosition(x * 36.f, y * 36.f);
                 window.draw(field->m_Info->m_Sprite);
             }
         }
