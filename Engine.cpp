@@ -1,7 +1,9 @@
 #include "Engine.h"
+#include "Highscore.h"
 #include <iostream>
 
 Engine::Engine()
+    : m_HighScore()
 {
     m_ElapsedTime = sf::Time::Zero;
 	m_Window.create(sf::VideoMode((10*18), (18*18)), "Tetris", sf::Style::Default);
@@ -12,7 +14,7 @@ Engine::Engine()
     
     //m_BackgroundSprite.setTexture(m_Texture);
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
-    createTetromino();
+    createTetromino(); 
 }
 
 void Engine::start()
@@ -67,8 +69,8 @@ void Engine::render(){
     m_Grid->draw(m_Window);
     if (m_Tetromino) m_Window.draw(*m_Tetromino);
     //m_Window.draw(m_BackgroundSprite);
+    m_HighScore.draw(m_Window);
     m_Window.display();
-    
 }
 
 void Engine::createTetromino() {

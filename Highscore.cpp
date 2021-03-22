@@ -4,9 +4,11 @@
 
 using namespace std;
 
-Highscore::Highscore() {}
-
-
+Highscore::Highscore() {
+	m_ScoreText.setStyle(sf::Text::Bold);
+	m_ScoreText.setCharacterSize(15);
+	m_ScoreText.setPosition(sf::Vector2f{0,0});
+}
 
 void Highscore::reset() {
 	m_LinesCleared = 0;
@@ -18,9 +20,7 @@ void Highscore::addScore(int m_Score) {
 }
 
 void Highscore::draw(sf::RenderWindow& window) {
-	window.draw(m_LvlText);
-	window.draw(m_TotalScore);
-	window.draw(m_LinesCleared);
+	window.draw(m_ScoreText);
 }
 
 //void Highscore::sumScore() {}

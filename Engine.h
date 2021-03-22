@@ -25,7 +25,7 @@ private:
 	void proceed(Movement move);		// TODO: call proceed logic
 	void Direction();	// TODO: call Direction logic
 
-	//Highscore m_HighScore;	// TODO: call Highscore object
+	Highscore m_HighScore;
 
 	
 

@@ -2,8 +2,9 @@
 #include <SFML/Graphics.hpp>
 class Highscore
 {
+
 private:
-	sf::Font m_Font;	// Where?
+	sf::Font m_Font;
 	sf::Text m_LvlText;
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
@@ -22,9 +23,6 @@ public:
 	//void scoreSystem(int num);
 	void update(const sf::Time& dt);
 
-	int getLvl();
-
-};
-
+	int getLvl() const;
 
 };
