@@ -9,7 +9,7 @@
 class Tetromino : public sf::Drawable
 {
 private:
-	int m_Id;
+	int m_BlockId;
 	const int m_FieldSize;
 	sf::Vector2i m_Position;
 	std::array<sf::Vector2i, 4> m_Block;

@@ -1,6 +1,4 @@
 #include "Engine.h"
-#include "Highscore.h"
-#include <iostream>
 
 Engine::Engine() :
 m_HighScore()
@@ -90,10 +88,12 @@ void Engine::render(){
 
 void Engine::createTetromino() {
     //TODO add random number for id.
-    m_Tetromino.reset(new Tetromino{ m_Texture, 5});
+    m_TetroId = getRandomNumber(6);
+    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId});
 }
 
 void Engine::proceed(Movement move)
 {
+
     m_Tetromino->direction(move);
 }
