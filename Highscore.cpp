@@ -70,7 +70,6 @@ void Highscore::update(const sf::Time& dt)
 	m_ScoreText.setString(std::string{ "Score:\n" + std::to_string(m_Score) });
 	m_LvlText.setString(std::string{ "Level:\n" + std::to_string(m_LinesCleared / 10) });
 	m_LinesClearedText.setString(std::string{ "Lines:\n" + std::to_string(m_LinesCleared) });
-
 }
 
 
