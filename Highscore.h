@@ -20,8 +20,8 @@ public:
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void addScore(int m_Score);
-	//void sumScore();
-	//void scoreSystem(int num);
+	void sumScore();
+	void scoreSystem(int num);
 	void update(const sf::Time& dt);
 
 	int getLvl() const;
