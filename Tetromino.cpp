@@ -24,7 +24,7 @@ unsigned int BlockStorage[7][4] = {
 //Private
 void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    for (size_t i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++)
     {
         m_Sprite.setPosition(m_Block[i].x * m_FieldSize + m_Position.x,
             m_Block[i].y * m_FieldSize + m_Position.y);
@@ -55,7 +55,7 @@ void Tetromino::setPositionByFields(const sf::Vector2i& position)
 std::array<sf::Vector2i, 4> Tetromino::getBlockPositions() const
 {
     std::array<sf::Vector2i, 4> blockPositions;
-    for (size_t i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++)
     {
         blockPositions[i].x = m_Block[i].x + m_Position.x;
         blockPositions[i].y = m_Block[i].y + m_Position.y;
