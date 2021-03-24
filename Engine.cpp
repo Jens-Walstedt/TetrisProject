@@ -23,12 +23,12 @@ void Engine::start()
     //GameLoop
     while (m_Window.isOpen())
     {
-        sf::Time trigger{ sf::seconds(0.3f) };
+        sf::Time fallSpeed{ sf::seconds(0.3f) };
         time = clock.restart();
         m_ElapsedTime += time;
         events();
         update(time);
-        if (m_ElapsedTime > trigger)
+        if (m_ElapsedTime > fallSpeed)
         {
             m_ElapsedTime = sf::Time::Zero;
             proceed(Movement::Down);
