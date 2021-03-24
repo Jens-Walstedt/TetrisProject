@@ -10,6 +10,7 @@
 
 class Engine
 {
+	friend class Grid;
 private:
 	sf::Sprite m_BackgroundSprite; //TEST
 

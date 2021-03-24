@@ -18,10 +18,11 @@ Field& Field::operator=(const Field& field)
 }
 
 
-Grid::Grid(sf::Vector2i size, sf::Texture texture, int blockSize)
+Grid::Grid(sf::Vector2i size, sf::Texture texture, int blockSize, Engine& engine)
     : m_Size(size),
     m_BlockSize(blockSize),
-    m_YRemoved()
+    m_YRemoved(),
+    m_Engine(engine)
 {
     for (int x = 0; x < size.x; ++x) {
         for (int y = 0; y < size.y; ++y) {
@@ -93,6 +94,34 @@ void Grid::clean()
             field->m_Info = nullptr;
         }
     }
+}
+
+void Grid::markLinesToRemove()
+{
+    if (m_RemoveBlocks) return;
+
+    int cntLinesCleared{ 0 };
+    for (int y = m_Size.y - 1; y < 0; y--)
+    {
+        int cntr = 0;
+        for (int x = 0; x < m_Size.x; x++)
+        {
+            auto field = getField(x, y);
+            if (field->m_Occupied)
+            {
+                cntr++;
+            }
+            if (cntr == 10)
+            {
+                m_YRemoved.push_back(y);
+                m_RemoveBlocks = true;
+                cntLinesCleared++;
+            }
+        }
+        cntr = 0;
+    }
+    m_Engine.m_HighScore.scoreSystem(cntLinesCleared);
+    std::sort(m_YRemoved.begin(), m_YRemoved.end(), [](int left, int right) {return left < right; });
 }
 
 void Grid::removeLines()
