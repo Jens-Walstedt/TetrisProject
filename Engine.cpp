@@ -5,7 +5,7 @@ Engine::Engine() :
     m_BlockSize(36)
 {
     m_ElapsedTime = sf::Time::Zero;
-	m_Window.create(sf::VideoMode((10*36), (18*36)), "Tetris", sf::Style::Default);
+	m_Window.create(sf::VideoMode((10*m_BlockSize), (18*m_BlockSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
@@ -119,7 +119,7 @@ bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block) {
 
     for (int i = 0; i < 4; ++i) {
 
-        if (block[i].x < 0 || block[i].x > 9 * m_BlockSize || block[i].y > 17 * m_BlockSize)
+        if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17)
         {
             return false;
         }

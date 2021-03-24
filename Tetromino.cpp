@@ -92,7 +92,7 @@ int Tetromino::getId() const
 std::array<sf::Vector2i, 4> Tetromino::FuturePos(Movement move) const {
 
     std::array<sf::Vector2i, 4> blockPositions;
-    sf::Vector2i tempPosition{m_Position};
+    sf::Vector2i tempPosition{m_Position.x / m_FieldSize, m_Position.y / m_FieldSize};
 
     if (move == Movement::Left) {
         tempPosition.x--;
