@@ -49,6 +49,9 @@ void Engine::update(const sf::Time& gameTime)
 {
     m_Grid->update(gameTime);
     m_HighScore.update(gameTime);
+    if (!m_Tetromino) {
+        createTetromino();
+    }
 }
 
 void Engine::events()
