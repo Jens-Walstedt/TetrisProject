@@ -33,9 +33,9 @@ void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 }
 
 //public
-Tetromino::Tetromino(sf::Texture& texture, int blockId)
+Tetromino::Tetromino(sf::Texture& texture, int blockId, int blockSize)
     : m_BlockId(blockId),
-    m_FieldSize(36),
+    m_FieldSize(blockSize),
     m_Position(sf::Vector2i(3 * m_FieldSize, m_FieldSize)),
     m_Sprite(sf::Sprite(texture, sf::IntRect{ (blockId % 7) * m_FieldSize, 0, m_FieldSize, m_FieldSize }))
 {    

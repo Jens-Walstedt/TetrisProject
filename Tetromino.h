@@ -19,7 +19,7 @@ private:
 
 
 public:
-	Tetromino(sf::Texture& texture, int id);
+	Tetromino(sf::Texture& texture, int id, int blockSize);
 	void setPositionByFields(const sf::Vector2i& position);
 	std::array<sf::Vector2i, 4> getBlockPositions() const;
 

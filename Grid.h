@@ -8,7 +8,7 @@
 
 struct FieldInfo 
 {
-	FieldInfo(sf::Texture& texture, int id);
+	FieldInfo(sf::Texture& texture, int id, int blockSize);
 	sf::Sprite m_Sprite;
 };
 
@@ -30,9 +30,10 @@ private:
 	sf::Vector2i m_Size;
 	float m_ElapsedTime;
 	bool m_RemoveBlocks;
+	int m_BlockSize;
 
 public:
-	Grid(sf::Vector2i size, sf::Texture texture);
+	Grid(sf::Vector2i size, sf::Texture texture, int blockSize);
 	void addBlock(int id, std::array<sf::Vector2i, 4> block);
 	void update(const sf::Time& gameTime);
 	void draw(sf::RenderWindow& window);

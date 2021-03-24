@@ -1,14 +1,15 @@
 #include "Engine.h"
 
 Engine::Engine() :
-m_HighScore()
+    m_HighScore(),
+    m_BlockSize(36)
 {
     m_ElapsedTime = sf::Time::Zero;
 	m_Window.create(sf::VideoMode((10*36), (18*36)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
-    m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_Texture);
+    m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_Texture, m_BlockSize);
     
     //m_BackgroundSprite.setTexture(m_Texture);
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
@@ -88,7 +89,7 @@ void Engine::render(){
 
 void Engine::createTetromino() {
     m_TetroId = getRandomNumber(6);
-    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId});
+    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
 }
 
 void Engine::proceed(Movement move)
@@ -106,14 +107,11 @@ bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block){
 
     for (int i = 0; i < 4; ++i) {
 
-        if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17) {
+        if (block[i].x < 0 || block[i].x > 9 * m_BlockSize || block[i].y > 17 * m_BlockSize) {
 
             return false;
 
         }
-
     }
-
     return true;
-
 }
