@@ -32,6 +32,8 @@ private:
 
 	bool CollisionDetection(std::array<sf::Vector2i, 4> block);		// Create grid
 
+	bool isOccupied(int x, int y);
+
 	Highscore m_HighScore;
 
 	std::unique_ptr<Tetromino> mTetromino;
