@@ -37,8 +37,6 @@ private:
 	bool isOccupied(int x, int y);
 
 	Highscore m_HighScore;
-
-	std::unique_ptr<Tetromino> mTetromino;
 	
 
 
