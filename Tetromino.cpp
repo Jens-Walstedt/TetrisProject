@@ -65,3 +65,24 @@ void Tetromino::setPosition(const sf::Vector2i& position)
 {
     m_Position = position;
 }
+
+std::array<sf::Vector2i, 4> Tetromino::FuturePos(Movement direction) const {
+
+    std::array<sf::Vector2i, 4> blockPositions;
+    sf::Vector2i tempPosition{m_Position};
+
+    if (direction == Movement::Left) {
+        tempPosition.x--;
+    } else if (direction == Movement::Right) {
+        tempPosition.x++;
+    } else {
+        tempPosition.y++;
+    }
+
+    for (auto i = 0; i < 4; ++i) {
+        blockPositions[i] = sf::Vector2i{ m_Block[i].x + tempPosition.x, m_Block[i].y + tempPosition.y };
+    }
+
+    return blockPositions;
+
+}

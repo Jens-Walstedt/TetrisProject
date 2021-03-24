@@ -93,18 +93,23 @@ void Engine::createTetromino() {
     m_Tetromino.reset(new Tetromino{ m_Texture, 5});
 }
 
-void Engine::proceed(Movement move)
-{
-    m_Tetromino->direction(move);
-}
+//void Engine::proceed(Movement move)
+//{
+//    m_Tetromino->direction(move);
+//
+//    if (CollisionDetection(m_Tetromino->FuturePos(dir))) {
+//        m_Tetromino->Movement(dir);
+//        if (dir == Movement::SoftDown) m_HighScore.addScore(1);
+//    }
+//
+//
+//}
 
-bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block){
-
-    for (int i = 0; i < 4; ++i) {
-        if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17) {
-            return false;
-        }
-    }
-
-
-}
+//bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block){
+//
+//    for (int i = 0; i < 4; ++i) {
+//        if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17) {
+//            return false;
+//        }
+//    }
+//}

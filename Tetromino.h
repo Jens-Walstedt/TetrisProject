@@ -16,7 +16,8 @@ private:
 	mutable sf::Sprite m_Sprite;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    
+	std::array<sf::Vector2i, 4> FuturePos(Movement direction) const;
+
 public:
 	Tetromino(sf::Texture& texture, int id);
 	void setPositionByFields(const sf::Vector2i& position);

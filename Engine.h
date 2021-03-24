@@ -25,10 +25,11 @@ private:
 	void proceed(Movement move);		// TODO: call proceed logic
 	void Direction();	// TODO: call Direction logic
 
-	bool CollisionDetection(std::array<sf::Vector2i, 4> block);
+	bool CollisionDetection(std::array<sf::Vector2i, 4> block);		// Create grid
 
 	Highscore m_HighScore;
 
+	std::unique_ptr<Tetromino> mTetromino;
 	
 
 
