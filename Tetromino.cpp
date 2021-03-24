@@ -57,8 +57,8 @@ std::array<sf::Vector2i, 4> Tetromino::getBlockPositions() const
     std::array<sf::Vector2i, 4> blockPositions;
     for (int i = 0; i < 4; i++)
     {
-        blockPositions[i].x = m_Block[i].x + m_Position.x;
-        blockPositions[i].y = m_Block[i].y + m_Position.y;
+        blockPositions[i].x = m_Block[i].x + m_Position.x / m_FieldSize;
+        blockPositions[i].y = m_Block[i].y + m_Position.y / m_FieldSize;
     }
     return blockPositions;
 }

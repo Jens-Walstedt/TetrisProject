@@ -5,7 +5,7 @@ Engine::Engine() :
     m_BlockSize(36)
 {
     m_ElapsedTime = sf::Time::Zero;
-	m_Window.create(sf::VideoMode((10*m_BlockSize), (18*m_BlockSize)), "Tetris", sf::Style::Default);
+	m_Window.create(sf::VideoMode((10*m_BlockSize) + 500, (18*m_BlockSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
@@ -94,7 +94,7 @@ void Engine::createTetromino() {
 
 void Engine::proceed(Movement move)
 {
-    if (CollisionDetection(m_Tetromino->FuturePos(move))) 
+    if (!CollisionDetection(m_Tetromino->FuturePos(move))) 
     {
         m_Tetromino->direction(move);
         if (move == Movement::SoftDown) m_HighScore.addScore(1);
@@ -121,13 +121,13 @@ bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block) {
 
         if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17)
         {
-            return false;
+            return true;
         }
         if (isOccupied(block[i].x, block[i].y)) {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 
