@@ -2,9 +2,14 @@
 
 Engine::Engine() :
     m_HighScore(),
-    m_BlockSize(36)
+    m_BlockSize(36),
+    m_SeparationLine()
 {
     m_ElapsedTime = sf::Time::Zero;
+    m_SeparationLine.setSize(sf::Vector2f(1.f, 36.f * 36.f));
+    m_SeparationLine.setPosition(sf::Vector2f(10.f * 26.f, 0));
+    m_SeparationLine.setFillColor(sf::Color::Black);
+
 	m_Window.create(sf::VideoMode((10*36), (18*36)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
@@ -84,6 +89,7 @@ void Engine::render(){
     if (m_Tetromino) m_Window.draw(*m_Tetromino);
     //m_Window.draw(m_BackgroundSprite);
     m_HighScore.draw(m_Window);
+    m_Window.draw(m_SeparationLine);
     m_Window.display();
 }
 
@@ -94,7 +100,7 @@ void Engine::createTetromino() {
 
 void Engine::proceed(Movement move)
 {
-    if (CollisionDetection(m_Tetromino->FuturePos(move))) 
+    /*if (CollisionDetection(m_Tetromino->FuturePos(move))) 
     {
         m_Tetromino->direction(move);
         if (move == Movement::SoftDown) m_HighScore.addScore(1);
@@ -107,7 +113,8 @@ void Engine::proceed(Movement move)
             m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
             m_Tetromino.reset(nullptr);
         }
-    }
+    }*/
+    m_Tetromino->direction(move);
 
 }
 
