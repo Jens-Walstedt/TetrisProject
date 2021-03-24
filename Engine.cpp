@@ -92,11 +92,21 @@ void Engine::createTetromino() {
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
 }
 
-void Engine::proceed(Movement move){
-
-    if (CollisionDetection(m_Tetromino->FuturePos(move))) {
+void Engine::proceed(Movement move)
+{
+    if (CollisionDetection(m_Tetromino->FuturePos(move))) 
+    {
         m_Tetromino->direction(move);
         if (move == Movement::SoftDown) m_HighScore.addScore(1);
+    }
+    else
+    {
+        if (move == Movement::Down || move == Movement::SoftDown)
+        {
+            int id = m_Tetromino->getId();
+            m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
+            m_Tetromino.reset(nullptr);
+        }
     }
 
 }

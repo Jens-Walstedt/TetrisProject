@@ -24,10 +24,11 @@ public:
 	std::array<sf::Vector2i, 4> getBlockPositions() const;
 
 
-	std::array<sf::Vector2i, 4> FuturePos(Movement direction) const;		//
+	std::array<sf::Vector2i, 4> FuturePos(Movement direction) const;
 
 
 	void direction(Movement move);
 	void setPosition(const sf::Vector2i& position);
+	int getId() const;
 };
 
