@@ -18,10 +18,12 @@ private:
 	sf::Time m_ElapsedTime;
 	std::unique_ptr<Grid> m_Grid;
 	sf::Texture m_Texture;
+	sf::Texture m_Background;
 	std::unique_ptr<Tetromino> m_Tetromino;
 	
 
 	sf::RenderWindow m_Window;
+	sf::RectangleShape m_SeparationLine;
 	void update(const sf::Time& gameTime);
 	void events();
 	void render();

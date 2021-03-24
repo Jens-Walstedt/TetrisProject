@@ -2,10 +2,16 @@
 
 Engine::Engine() :
     m_HighScore(),
-    m_BlockSize(36)
+    m_BlockSize(36),
+    m_SeparationLine()
 {
     m_ElapsedTime = sf::Time::Zero;
-	m_Window.create(sf::VideoMode((10*m_BlockSize) + 500, (18*m_BlockSize)), "Tetris", sf::Style::Default);
+    m_SeparationLine.setSize(sf::Vector2f(1.f, 36.f * 36.f));
+    m_SeparationLine.setPosition(sf::Vector2f(10.f * 26.f, 0));
+    m_SeparationLine.setFillColor(sf::Color::Black);
+
+	m_Window.create(sf::VideoMode((10*36), (18*36)), "Tetris", sf::Style::Default);
+	m_Window.create(sf::VideoMode((10*m_BlockSize), (18*m_BlockSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
@@ -84,6 +90,7 @@ void Engine::render(){
     if (m_Tetromino) m_Window.draw(*m_Tetromino);
     //m_Window.draw(m_BackgroundSprite);
     m_HighScore.draw(m_Window);
+    m_Window.draw(m_SeparationLine);
     m_Window.display();
 }
 
