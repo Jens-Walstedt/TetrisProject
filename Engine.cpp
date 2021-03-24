@@ -100,21 +100,24 @@ void Engine::proceed(Movement move){
     }
 
 }
+bool Engine::isOccupied(int x, int y)
+{
+    return m_Grid->getField(x, y)->m_Occupied;
+}
 
-bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block){
+bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block) {
 
     for (int i = 0; i < 4; ++i) {
 
-        if (block[i].x < 0 || block[i].x > 9 * m_BlockSize || block[i].y > 17 * m_BlockSize) {
-
+        if (block[i].x < 0 || block[i].x > 9 * m_BlockSize || block[i].y > 17 * m_BlockSize)
+        {
+            return false;
+        }
         if (isOccupied(block[i].x, block[i].y)) {
             return false;
         }
     }
     return true;
-
 }
 
-bool Engine::isOccupied(int x, int y) {
-    return m_Grid->getField(x, y)->m_Occupied;
-}
+
