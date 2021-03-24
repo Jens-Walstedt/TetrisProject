@@ -1,17 +1,16 @@
 #include "Engine.h"
 
 Engine::Engine() :
-    m_HighScore(),
     m_BlockSize(36),
+    m_HighScore(m_BlockSize),
     m_SeparationLine()
 {
     m_ElapsedTime = sf::Time::Zero;
     m_SeparationLine.setSize(sf::Vector2f(1.f, 36.f * 36.f));
-    m_SeparationLine.setPosition(sf::Vector2f(10.f * 26.f, 0));
+    m_SeparationLine.setPosition(sf::Vector2f(10.f * 36.f, 0));
     m_SeparationLine.setFillColor(sf::Color::Black);
 
-	m_Window.create(sf::VideoMode((10*36), (18*36)), "Tetris", sf::Style::Default);
-	m_Window.create(sf::VideoMode((10*m_BlockSize), (18*m_BlockSize)), "Tetris", sf::Style::Default);
+	m_Window.create(sf::VideoMode((10*m_BlockSize) + 100, (18*m_BlockSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
@@ -30,7 +29,7 @@ void Engine::start()
     //GameLoop
     while (m_Window.isOpen())
     {
-        sf::Time fallSpeed{ sf::seconds(0.3f) };
+        sf::Time fallSpeed{ sf::seconds(2.f) };
         time = clock.restart();
         m_ElapsedTime += time;
         events();
@@ -49,6 +48,7 @@ void Engine::start()
 void Engine::update(const sf::Time& gameTime)
 {
     m_Grid->update(gameTime);
+    m_HighScore.update(gameTime);
 }
 
 void Engine::events()

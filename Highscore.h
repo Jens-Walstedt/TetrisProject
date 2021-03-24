@@ -5,17 +5,19 @@ class Highscore
 {
 
 private:
-	//sf::Font m_Font;
+	sf::Font m_Font;
 	sf::Text m_LvlText;
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
+
+	int m_FieldSize;
 
 	int m_Score;
 	int m_BonusScore;
 	int m_LinesCleared;
 
 public:
-	Highscore();
+	Highscore(int fieldsize);
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void addScore(int m_Score);
