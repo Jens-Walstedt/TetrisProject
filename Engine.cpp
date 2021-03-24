@@ -1,6 +1,4 @@
 #include "Engine.h"
-#include "Highscore.h"
-#include <iostream>
 
 Engine::Engine() :
 m_HighScore()
@@ -25,12 +23,12 @@ void Engine::start()
     //GameLoop
     while (m_Window.isOpen())
     {
-        sf::Time trigger{ sf::seconds(0.3f) };
+        sf::Time fallSpeed{ sf::seconds(0.3f) };
         time = clock.restart();
         m_ElapsedTime += time;
         events();
         update(time);
-        if (m_ElapsedTime > trigger)
+        if (m_ElapsedTime > fallSpeed)
         {
             m_ElapsedTime = sf::Time::Zero;
             proceed(Movement::Down);
@@ -90,7 +88,8 @@ void Engine::render(){
 
 void Engine::createTetromino() {
     //TODO add random number for id.
-    m_Tetromino.reset(new Tetromino{ m_Texture, 5});
+    m_TetroId = getRandomNumber(6);
+    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId});
 }
 
 //void Engine::proceed(Movement move)
