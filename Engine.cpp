@@ -4,6 +4,7 @@ Engine::Engine() :
     m_BlockSize(36),
     m_HighScore(m_BlockSize),
     m_SeparationLine()
+    //m_Preview(nullptr)
 {
     m_ElapsedTime = sf::Time::Zero;
     m_SeparationLine.setSize(sf::Vector2f(1.f, 36.f * 36.f));
@@ -99,14 +100,16 @@ void Engine::render(){
 
 void Engine::createTetromino() {
 
-    m_TetroId = getRandomNumber(6);
-
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
 
+    if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions())) {
+        m_Grid->clean();
+        m_HighScore.reset();
+    }
 
-    
-
-
+    m_TetroId = getRandomNumber(6);
+    m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_BlockSize});
+    m_Preview->setPosition(sf::Vector2i{ 11, 12 });
 }
 
 void Engine::proceed(Movement move)
