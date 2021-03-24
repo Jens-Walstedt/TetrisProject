@@ -68,6 +68,19 @@ void Grid::draw(sf::RenderWindow& window)
     }
 }
 
+bool Grid::occupied(std::array<sf::Vector2i, 4> block)
+{
+    for (int i = 0; i < 4; i++)
+    {
+        auto field = getField(block[i].x, block[i].y);
+        if (field->m_Occupied)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Grid::clean()
 {
     for (int x = 0; x < m_Size.x; x++)
