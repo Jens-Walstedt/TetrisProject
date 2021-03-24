@@ -67,6 +67,20 @@ void Grid::draw(sf::RenderWindow& window)
     }
 }
 
+void Grid::clean()
+{
+    for (int x = 0; x < m_Size.x; x++)
+    {
+        for (int y = 0; y < m_Size.y; y++)
+        {
+            auto field = getField(x, y);
+            field->m_Occupied = false;
+            field->m_Visible = true;
+            field->m_Info = nullptr;
+        }
+    }
+}
+
 Field* Grid::getField(int x, int y)
 {
     return m_Fields[convert2D_to_1D(x, y)].get();
