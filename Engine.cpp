@@ -115,13 +115,19 @@ bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block){
     for (int i = 0; i < 4; ++i) {
 
         if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17) {
-
             return false;
+        } 
 
+        if (isOccupied(block[i].x, block[i].y)) {
+            return false;
         }
 
     }
 
     return true;
 
+}
+
+bool Engine::isOccupied(int x, int y) {
+    return m_Grid->getField(x, y)->m_Occupied;
 }
