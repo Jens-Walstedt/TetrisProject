@@ -91,14 +91,12 @@ void Engine::createTetromino() {
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId});
 }
 
-void Engine::proceed(Movement move)
-{
+void Engine::proceed(Movement move){
 
     if (CollisionDetection(m_Tetromino->FuturePos(move))) {
         m_Tetromino->direction(move);
         if (move == Movement::SoftDown) m_HighScore.addScore(1);
     }
-
 
 }
 
@@ -107,13 +105,19 @@ bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block){
     for (int i = 0; i < 4; ++i) {
 
         if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17) {
-
             return false;
+        } 
 
+        if (isOccupied(block[i].x, block[i].y)) {
+            return false;
         }
 
     }
 
     return true;
 
+}
+
+bool Engine::isOccupied(int x, int y) {
+    return m_Grid->getField(x, y)->m_Occupied;
 }
