@@ -95,13 +95,9 @@ void Engine::render(){
 }
 
 void Engine::createTetromino() {
-
     m_TetroId = getRandomNumber(6);
-
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
 
-
-    
 
 
 }
