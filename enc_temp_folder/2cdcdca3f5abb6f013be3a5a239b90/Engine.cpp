@@ -49,9 +49,6 @@ void Engine::update(const sf::Time& gameTime)
 {
     m_Grid->update(gameTime);
     m_HighScore.update(gameTime);
-    if (!m_Tetromino) {
-        createTetromino();
-    }
 }
 
 void Engine::events()
@@ -98,13 +95,9 @@ void Engine::render(){
 }
 
 void Engine::createTetromino() {
-
     m_TetroId = getRandomNumber(6);
-
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
 
-
-    
 
 
 }
@@ -123,7 +116,6 @@ void Engine::proceed(Movement move)
             int id = m_Tetromino->getId();
             m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
             m_Tetromino.reset(nullptr);
-            m_HighScore.sumScore();
         }
     }
 
