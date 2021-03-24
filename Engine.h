@@ -14,6 +14,7 @@ private:
 	sf::Sprite m_BackgroundSprite; //TEST
 
 	int m_TetroId;
+	int m_BlockSize;
 	sf::Time m_ElapsedTime;
 	std::unique_ptr<Grid> m_Grid;
 	sf::Texture m_Texture;
