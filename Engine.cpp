@@ -116,6 +116,7 @@ void Engine::proceed(Movement move)
             int id = m_Tetromino->getId();
             m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
             m_Tetromino.reset(nullptr);
+            m_HighScore.sumScore();
         }
     }
 
