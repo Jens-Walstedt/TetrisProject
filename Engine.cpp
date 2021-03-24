@@ -101,7 +101,7 @@ void Engine::createTetromino() {
 
 void Engine::proceed(Movement move)
 {
-    if (CollisionDetection(m_Tetromino->FuturePos(move))) 
+    if (!CollisionDetection(m_Tetromino->FuturePos(move))) 
     {
         m_Tetromino->direction(move);
         if (move == Movement::SoftDown) m_HighScore.addScore(1);
@@ -128,13 +128,13 @@ bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block) {
 
         if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17)
         {
-            return false;
+            return true;
         }
         if (isOccupied(block[i].x, block[i].y)) {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 
