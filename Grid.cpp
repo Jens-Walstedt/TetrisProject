@@ -20,7 +20,8 @@ Field& Field::operator=(const Field& field)
 
 Grid::Grid(sf::Vector2i size, sf::Texture texture, int blockSize)
     : m_Size(size),
-    m_BlockSize(blockSize)
+    m_BlockSize(blockSize),
+    m_YRemoved()
 {
     for (int x = 0; x < size.x; ++x) {
         for (int y = 0; y < size.y; ++y) {
@@ -79,6 +80,24 @@ void Grid::clean()
             field->m_Info = nullptr;
         }
     }
+}
+
+void Grid::removeLines()
+{
+    for (auto i : m_YRemoved)
+    {
+        for (auto y = i; y >= 0; y--)
+        {
+            for (auto x = 0; x < m_Size.x; x++)
+            {
+                int above = y - 1;
+                if (above < 0) continue;
+                *getField(x, y) = *getField(x, above);
+            }
+        }
+    }
+    m_YRemoved.clear();
+    m_RemoveBlocks = false;
 }
 
 Field* Grid::getField(int x, int y)

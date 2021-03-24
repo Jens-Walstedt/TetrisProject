@@ -28,6 +28,7 @@ private:
 	std::unordered_map<unsigned int, std::unique_ptr<FieldInfo>> m_FieldInfos;
 
 	sf::Vector2i m_Size;
+	std::vector<int> m_YRemoved;
 	float m_ElapsedTime;
 	bool m_RemoveBlocks;
 	int m_BlockSize;
@@ -38,6 +39,7 @@ public:
 	void update(const sf::Time& gameTime);
 	void draw(sf::RenderWindow& window);
 	void clean();
+	void removeLines();
 	Field* getField(int x, int y);
 };
 
