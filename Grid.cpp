@@ -18,7 +18,7 @@ Field& Field::operator=(const Field& field)
 }
 
 
-Grid::Grid(sf::Vector2i size, sf::Texture texture, int blockSize, Engine& engine)
+Grid::Grid(sf::Vector2i size, int blockSize, Engine& engine)
     : m_Size(size),
     m_BlockSize(blockSize),
     m_YRemoved(),
@@ -31,13 +31,22 @@ Grid::Grid(sf::Vector2i size, sf::Texture texture, int blockSize, Engine& engine
     }
 
     for (int id = 0; id < 7; ++id) {
-        m_FieldInfos[id] = std::make_unique<FieldInfo>(texture, id, blockSize);
+        m_FieldInfos[id] = std::make_unique<FieldInfo>(m_Engine.m_Texture, id, blockSize);
     }
 }
 
 void Grid::update(const sf::Time& gameTime)
 {
-
+    markLinesToRemove();
+    if (m_RemoveBlocks)
+    {
+        m_ElapsedTime += gameTime.asSeconds();
+        if (m_ElapsedTime > 0.6f)
+        {
+            m_ElapsedTime = 0.f;
+            removeLines();
+        }
+    }
 }
 
 void Grid::addBlock(int id, std::array<sf::Vector2i, 4> block) 
