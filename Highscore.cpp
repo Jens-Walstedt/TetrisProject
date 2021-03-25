@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Highscore::Highscore(int fieldsize) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font()
+Highscore::Highscore(int fieldsize) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(), m_Sound()
 {
 	m_Score = 0;
 	m_LinesCleared = 0;
@@ -71,6 +71,14 @@ void Highscore::scoreSystem(int num)
 	default:
 		break;
 	}
+
+	/*if (lvl > 0)
+	{
+		while (lvl++)
+		{
+			m_Sound.speedUpMusic();
+		}
+	}*/
 }
 
 void Highscore::update(const sf::Time& dt)

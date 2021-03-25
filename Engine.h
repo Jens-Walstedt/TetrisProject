@@ -19,7 +19,6 @@ private:
 	sf::Time m_ElapsedTime;
 
 	std::unique_ptr<Grid> m_Grid;
-	Sound m_Sound;
 	std::unique_ptr<Tetromino> m_Preview;
 	std::unique_ptr<Tetromino> m_Tetromino;
 
@@ -42,7 +41,7 @@ private:
 	bool isOccupied(int x, int y);
 
 	Highscore m_HighScore;
-	
+	Sound m_Sound;
 
 
 public:

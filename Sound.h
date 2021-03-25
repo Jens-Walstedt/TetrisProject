@@ -10,5 +10,6 @@ private:
 public:
 	Sound();
 	void setBackgroundMusic();
+	void speedUpMusic();
 };
 
