@@ -14,7 +14,7 @@ Engine::Engine() :
     if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
-    m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_BlockSize, *this);
+    m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this);
     
     //m_BackgroundSprite.setTexture(m_Texture);
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
@@ -101,7 +101,7 @@ void Engine::createTetromino() {
 
     m_TetroId = getRandomNumber(6);
 
-    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
+    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize});
 
 
     

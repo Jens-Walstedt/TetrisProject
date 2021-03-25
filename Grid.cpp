@@ -20,7 +20,7 @@ Field& Field::operator=(const Field& field)
 
 Grid::Grid(sf::Vector2i size, int blockSize, Engine& engine)
     : m_Size(size),
-    m_BlockSize(blockSize),
+    m_FieldSize(blockSize),
     m_YRemoved(),
     m_Engine(engine)
 {
@@ -71,7 +71,7 @@ void Grid::draw(sf::RenderWindow& window)
             auto field = getField(x, y);
             //if field has not been occupied yet, mInfo would be assigned to nullptr
             if (field->m_Occupied && field->m_Visible) {
-                field->m_Info->m_Sprite.setPosition(x * (float)m_BlockSize, y * (float)m_BlockSize);
+                field->m_Info->m_Sprite.setPosition(x * (float)m_FieldSize, y * (float)m_FieldSize);
                 window.draw(field->m_Info->m_Sprite);
                 std::cout << "hej";
             }
