@@ -71,14 +71,6 @@ void Highscore::scoreSystem(int num)
 	default:
 		break;
 	}
-
-	/*if (lvl > 0)
-	{
-		while (lvl++)
-		{
-			m_Sound.speedUpMusic();
-		}
-	}*/
 }
 
 void Highscore::update(const sf::Time& dt)
