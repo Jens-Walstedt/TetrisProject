@@ -18,9 +18,11 @@ Field& Field::operator=(const Field& field)
 }
 
 
-Grid::Grid(sf::Vector2i size, sf::Texture texture, int blockSize)
+Grid::Grid(sf::Vector2i size, int blockSize, Engine& engine)
     : m_Size(size),
-    m_BlockSize(blockSize)
+    m_BlockSize(blockSize),
+    m_YRemoved(),
+    m_Engine(engine)
 {
     for (int x = 0; x < size.x; ++x) {
         for (int y = 0; y < size.y; ++y) {
@@ -29,13 +31,22 @@ Grid::Grid(sf::Vector2i size, sf::Texture texture, int blockSize)
     }
 
     for (int id = 0; id < 7; ++id) {
-        m_FieldInfos[id] = std::make_unique<FieldInfo>(texture, id, blockSize);
+        m_FieldInfos[id] = std::make_unique<FieldInfo>(m_Engine.m_Texture, id, blockSize);
     }
 }
 
 void Grid::update(const sf::Time& gameTime)
 {
-
+    markLinesToRemove();
+    if (m_RemoveBlocks)
+    {
+        m_ElapsedTime += gameTime.asSeconds();
+        if (m_ElapsedTime > 0.6f)
+        {
+            m_ElapsedTime = 0.f;
+            removeLines();
+        }
+    }
 }
 
 void Grid::addBlock(int id, std::array<sf::Vector2i, 4> block) 
@@ -68,6 +79,19 @@ void Grid::draw(sf::RenderWindow& window)
     }
 }
 
+bool Grid::occupied(std::array<sf::Vector2i, 4> block)
+{
+    for (int i = 0; i < 4; i++)
+    {
+        auto field = getField(block[i].x, block[i].y);
+        if (field->m_Occupied)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Grid::clean()
 {
     for (int x = 0; x < m_Size.x; x++)
@@ -80,6 +104,52 @@ void Grid::clean()
             field->m_Info = nullptr;
         }
     }
+}
+
+void Grid::markLinesToRemove()
+{
+    if (m_RemoveBlocks) return;
+
+    int cntLinesCleared{ 0 };
+    for (int y = m_Size.y - 1; y < 0; y--)
+    {
+        int cntr = 0;
+        for (int x = 0; x < m_Size.x; x++)
+        {
+            auto field = getField(x, y);
+            if (field->m_Occupied)
+            {
+                cntr++;
+            }
+            if (cntr == 10)
+            {
+                m_YRemoved.push_back(y);
+                m_RemoveBlocks = true;
+                cntLinesCleared++;
+            }
+        }
+        cntr = 0;
+    }
+    m_Engine.m_HighScore.scoreSystem(cntLinesCleared);
+    std::sort(m_YRemoved.begin(), m_YRemoved.end(), [](int left, int right) {return left < right; });
+}
+
+void Grid::removeLines()
+{
+    for (auto i : m_YRemoved)
+    {
+        for (auto y = i; y >= 0; y--)
+        {
+            for (auto x = 0; x < m_Size.x; x++)
+            {
+                int above = y - 1;
+                if (above < 0) continue;
+                *getField(x, y) = *getField(x, above);
+            }
+        }
+    }
+    m_YRemoved.clear();
+    m_RemoveBlocks = false;
 }
 
 Field* Grid::getField(int x, int y)
