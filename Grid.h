@@ -45,6 +45,7 @@ public:
 	void clean();
 	void markLinesToRemove();
 	void removeLines();
+	void blink();
 	Field* getField(int x, int y);
 };
 

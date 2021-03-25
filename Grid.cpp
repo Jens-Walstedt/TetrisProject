@@ -41,6 +41,7 @@ void Grid::update(const sf::Time& gameTime)
     if (m_RemoveBlocks)
     {
         m_ElapsedTime += gameTime.asSeconds();
+        blink();
         if (m_ElapsedTime > 0.6f)
         {
             m_ElapsedTime = 0.f;
@@ -150,6 +151,18 @@ void Grid::removeLines()
     }
     m_YRemoved.clear();
     m_RemoveBlocks = false;
+}
+
+void Grid::blink()
+{
+    int num = int(m_ElapsedTime * 5.f);
+    for (auto y : m_YRemoved)
+    {
+        for (int x = 0; x < m_Size.x; x++)
+        {
+            getField(x, y)->m_Visible = (num % 2 != 0);
+        }
+    }
 }
 
 Field* Grid::getField(int x, int y)
