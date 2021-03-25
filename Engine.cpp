@@ -38,7 +38,7 @@ void Engine::start()
         if (m_ElapsedTime > fallSpeed)
         {
             m_ElapsedTime = sf::Time::Zero;
-            proceed(Movement::Down);
+            proceed(Movement::FallDown);
         }
 
         render();
@@ -69,7 +69,7 @@ void Engine::events()
         case sf::Event::KeyPressed:
             if(Event.key.code == sf::Keyboard::S)
             {
-                proceed(Movement::SoftDown);
+                proceed(Movement::PressDown);
             }
             else if (Event.key.code == sf::Keyboard::A) 
             {
@@ -118,11 +118,11 @@ void Engine::proceed(Movement move)
     if (!CollisionDetection(m_Tetromino->FuturePos(move))) 
     {
         m_Tetromino->direction(move);
-        if (move == Movement::SoftDown) m_HighScore.addScore(1);
+        if (move == Movement::PressDown) m_HighScore.addScore(1);
     }
     else
     {
-        if (move == Movement::Down || move == Movement::SoftDown)
+        if (move == Movement::FallDown || move == Movement::PressDown)
         {
             int id = m_Tetromino->getId();
             m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
