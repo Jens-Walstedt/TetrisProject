@@ -34,7 +34,7 @@ private:
 	std::vector<int> m_YRemoved;
 	float m_ElapsedTime;
 	bool m_RemoveBlocks;
-	int m_BlockSize;
+	int m_FieldSize;
 
 public:
 	Grid(sf::Vector2i size, int blockSize, Engine& engine);
