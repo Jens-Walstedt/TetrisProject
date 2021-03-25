@@ -81,10 +81,18 @@ void Engine::events()
             }
             else if (Event.key.code == sf::Keyboard::Space) 
             {
-                //rotate();
+                rotate();
             }
             break;
         }
+    }
+}
+
+void Engine::rotate() {
+    if (!m_Tetromino) return;
+    m_Tetromino->rotate();
+    if (CollisionDetection(m_Tetromino->getBlockPositions())) {
+        m_Tetromino->revertState();
     }
 }
 
