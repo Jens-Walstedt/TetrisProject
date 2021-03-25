@@ -5,7 +5,7 @@
 #include "Tetromino.h"
 #include "Highscore.h"
 #include "Utility.h"
-
+#include "Sound.h"
 #include <iostream>
 
 class Engine
@@ -19,6 +19,7 @@ private:
 	sf::Time m_ElapsedTime;
 
 	std::unique_ptr<Grid> m_Grid;
+	Sound m_Sound;
 	std::unique_ptr<Tetromino> m_Preview;
 	std::unique_ptr<Tetromino> m_Tetromino;
 
