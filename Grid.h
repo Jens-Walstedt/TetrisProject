@@ -5,7 +5,9 @@
 #include <SFML/System/Time.hpp>
 #include <array>
 #include <unordered_map>
+#include "Engine.h"
 
+class Engine;
 struct FieldInfo 
 {
 	FieldInfo(sf::Texture& texture, int id, int blockSize);
@@ -27,20 +29,23 @@ private:
 	std::unordered_map<unsigned int, std::unique_ptr<Field>> m_Fields;
 	std::unordered_map<unsigned int, std::unique_ptr<FieldInfo>> m_FieldInfos;
 
+	Engine& m_Engine;
 	sf::Vector2i m_Size;
 	std::vector<int> m_YRemoved;
 	float m_ElapsedTime;
 	bool m_RemoveBlocks;
-	int m_BlockSize;
+	int m_FieldSize;
 
 public:
-	Grid(sf::Vector2i size, sf::Texture texture, int blockSize);
+	Grid(sf::Vector2i size, int blockSize, Engine& engine);
 	void addBlock(int id, std::array<sf::Vector2i, 4> block);
 	void update(const sf::Time& gameTime);
 	void draw(sf::RenderWindow& window);
 	bool occupied(std::array<sf::Vector2i, 4> block);
 	void clean();
+	void markLinesToRemove();
 	void removeLines();
+	void blink();
 	Field* getField(int x, int y);
 };
 
