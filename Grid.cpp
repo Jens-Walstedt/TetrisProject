@@ -111,7 +111,7 @@ void Grid::markLinesToRemove()
     if (m_RemoveBlocks) return;
 
     int cntLinesCleared{ 0 };
-    for (int y = m_Size.y - 1; y < 0; y--)
+    for (int y = m_Size.y - 1; y > 0; y--)
     {
         int cntr = 0;
         for (int x = 0; x < m_Size.x; x++)
