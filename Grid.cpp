@@ -74,7 +74,6 @@ void Grid::draw(sf::RenderWindow& window)
             if (field->m_Occupied && field->m_Visible) {
                 field->m_Info->m_Sprite.setPosition(x * (float)m_FieldSize, y * (float)m_FieldSize);
                 window.draw(field->m_Info->m_Sprite);
-                std::cout << "hej";
             }
         }
     }
