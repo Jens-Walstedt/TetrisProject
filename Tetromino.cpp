@@ -26,7 +26,7 @@ void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for (int i = 0; i < 4; i++)
     {
-        m_Sprite.setPosition(m_Block[i].x * m_FieldSize + m_Position.x,
+        m_Sprite.setPosition(m_Block[i].x * (float)m_FieldSize + m_Position.x,
             m_Block[i].y * m_FieldSize + m_Position.y);
         target.draw(m_Sprite);
     }
@@ -37,7 +37,8 @@ Tetromino::Tetromino(sf::Texture& texture, int blockId, int blockSize)
     : m_BlockId(blockId),
     m_FieldSize(blockSize),
     m_Position(sf::Vector2i(3 * m_FieldSize, m_FieldSize)),
-    m_Sprite(sf::Sprite(texture, sf::IntRect{ (blockId % 7) * m_FieldSize, 0, m_FieldSize, m_FieldSize }))
+    m_Sprite(sf::Sprite(texture, sf::IntRect{ (blockId % 7) * m_FieldSize, 0, m_FieldSize, m_FieldSize })),
+    m_CurrentRotation(0)
 {    
     for (size_t i = 0; i < 4; ++i)
     {
@@ -62,6 +63,61 @@ std::array<sf::Vector2i, 4> Tetromino::getBlockPositions() const
     }
     return blockPositions;
 }
+void Tetromino::rotate() {
+    //store state of Block in case rotation turns out to be invalid
+    m_OldBlock = m_Block;
+
+    if (m_BlockId == 0) { //square: no need for rotation
+        return;
+    }
+    if (m_BlockId == 6) { // I: restrict "rotation" to two states (horizontal/vertical)
+        m_CurrentRotation++;
+        for (auto i = 0; i < 4; ++i) {
+            sf::Vector2i oldPoint = m_Block[i];    //pivot
+            sf::Vector2i localVector = oldPoint - sf::Vector2i{ 1, 2 };
+            sf::Vector2i nextPoint{};
+            if (m_CurrentRotation % 2 == 1) {
+                /* counter-clockwise
+                * [0  -1]
+                * [-1  0]*/
+                nextPoint = sf::Vector2i{ (0 * localVector.x) + (-1 * localVector.y),
+                    (1 * localVector.x) + (0 * localVector.y) };
+
+            }
+            else {
+
+                nextPoint = sf::Vector2i{ (0 * localVector.x) + (1 * localVector.y),
+                    (-1 * localVector.x) + (0 * localVector.y) };
+
+            }
+            m_Block[i] = sf::Vector2i{ 1,2 } + nextPoint;
+
+        }
+        return;
+    }
+    for (auto i = 0; i < 4; ++i) {
+        sf::Vector2i oldPoint = m_Block[i];    //pivot
+        sf::Vector2i localVector = oldPoint - sf::Vector2i{ 1,2 };   // 1, 1
+
+                                                                     /*//Rotation Matrix
+                                                                     * [cos Degree    -sin Degree]
+                                                                     * [sin Degree     cos Degree]
+                                                                     * translates to
+                                                                     * clockwise
+                                                                     * [0   -1]
+                                                                     * [1    0]
+                                                                     * */
+
+        sf::Vector2i nextPoint{ (0 * localVector.x) + (-1 * localVector.y),
+            (1 * localVector.x) + (0 * localVector.y) };
+        m_Block[i] = sf::Vector2i{ 1,2 } + nextPoint;
+    }
+}
+
+void Tetromino::revertState() {
+    m_Block = m_OldBlock;
+}
+
 
 void Tetromino::direction(Movement move)
 {
