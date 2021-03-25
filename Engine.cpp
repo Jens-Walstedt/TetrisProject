@@ -30,7 +30,7 @@ void Engine::start()
     //GameLoop
     while (m_Window.isOpen())
     {
-        sf::Time fallSpeed{ sf::seconds(2.f) };
+        sf::Time fallSpeed{ sf::seconds(85.f / (85.f + (m_HighScore.getLvl() * (m_HighScore.getLvl() * 5.f)))) };
         time = clock.restart();
         m_ElapsedTime += time;
         events();
@@ -94,13 +94,14 @@ void Engine::render(){
     if (m_Tetromino) m_Window.draw(*m_Tetromino);
     //m_Window.draw(m_BackgroundSprite);
     m_HighScore.draw(m_Window);
+    m_Window.draw(*m_Preview);
     m_Window.draw(m_SeparationLine);
     m_Window.display();
 }
 
 void Engine::createTetromino() {
 
-    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
+    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize});
 
     if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions())) {
         m_Grid->clean();
@@ -108,8 +109,8 @@ void Engine::createTetromino() {
     }
 
     m_TetroId = getRandomNumber(6);
-    m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_BlockSize});
-    m_Preview->setPosition(sf::Vector2i{ 11, 12 });
+    m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize});
+    m_Preview->setPosition(sf::Vector2i{ 10 * m_FieldSize, 12 * m_FieldSize });
 }
 
 void Engine::proceed(Movement move)
