@@ -1,8 +1,8 @@
 #include "Engine.h"
 
 Engine::Engine() :
-    m_BlockSize(36),
-    m_HighScore(m_BlockSize),
+    m_FieldSize(36),
+    m_HighScore(m_FieldSize),
     m_SeparationLine()
 {
     m_ElapsedTime = sf::Time::Zero;
@@ -10,11 +10,11 @@ Engine::Engine() :
     m_SeparationLine.setPosition(sf::Vector2f(10.f * 36.f, 0));
     m_SeparationLine.setFillColor(sf::Color::Black);
 
-	m_Window.create(sf::VideoMode((10*m_BlockSize) + 100, (18*m_BlockSize)), "Tetris", sf::Style::Default);
+	m_Window.create(sf::VideoMode((10*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
-    m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_Texture, m_BlockSize);
+    m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_Texture, m_FieldSize);
     
     //m_BackgroundSprite.setTexture(m_Texture);
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
@@ -99,7 +99,7 @@ void Engine::render(){
 
 void Engine::createTetromino() {
     m_TetroId = getRandomNumber(6);
-    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
+    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize});
 }
 
 void Engine::proceed(Movement move)
@@ -119,7 +119,6 @@ void Engine::proceed(Movement move)
             m_HighScore.sumScore();
         }
     }
-
 }
 bool Engine::isOccupied(int x, int y)
 {
