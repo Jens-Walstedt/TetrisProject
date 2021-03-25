@@ -12,7 +12,7 @@ Engine::Engine() :
     m_SeparationLine.setFillColor(sf::Color::Black);
 
 	m_Window.create(sf::VideoMode((10*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
-    if (!m_Texture.loadFromFile("TetrisTextur.png")) {
+    if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this);
@@ -100,7 +100,7 @@ void Engine::render(){
 
 void Engine::createTetromino() {
 
-    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_BlockSize});
+    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize});
 
     if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions())) {
         m_Grid->clean();
@@ -108,7 +108,7 @@ void Engine::createTetromino() {
     }
 
     m_TetroId = getRandomNumber(6);
-    m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_BlockSize});
+    m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize});
     m_Preview->setPosition(sf::Vector2i{ 11, 12 });
 }
 

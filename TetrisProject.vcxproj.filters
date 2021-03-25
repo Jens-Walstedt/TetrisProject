@@ -61,5 +61,8 @@
     <Image Include="TetrisTextur.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="TetrisTextur2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
