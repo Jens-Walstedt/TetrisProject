@@ -12,7 +12,7 @@ Engine::Engine() :
     m_SeparationLine.setPosition(sf::Vector2f(10.f * 36.f, 0));
     m_SeparationLine.setFillColor(sf::Color::Black);
 
-	m_Window.create(sf::VideoMode((10*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
+	m_Window.create(sf::VideoMode((12*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
@@ -120,7 +120,7 @@ void Engine::createTetromino() {
 
     m_TetroId = getRandomNumber(6);
     m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize});
-    m_Preview->setPosition(sf::Vector2i{ 10 * m_FieldSize, 12 * m_FieldSize });
+    m_Preview->setPosition(sf::Vector2i{ 11 * m_FieldSize, 11 * m_FieldSize });
 }
 
 void Engine::proceed(Movement move)
