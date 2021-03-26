@@ -6,6 +6,7 @@
 #include <array>
 #include <unordered_map>
 #include "Engine.h"
+#include "Sound.h"
 
 class Engine;
 struct FieldInfo 
@@ -37,6 +38,7 @@ private:
 	bool m_RemoveBlocks;
 	int m_FieldSize;
 	
+	Sound m_Sound;
 
 public:
 	Grid(sf::Vector2i size, int blockSize, Engine& enginem, sf::Vector2f startPosition);
