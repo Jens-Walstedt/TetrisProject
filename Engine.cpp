@@ -2,6 +2,7 @@
 
 Engine::Engine() :
     m_FieldSize(36),
+    m_Sound(),
     m_HighScore(m_FieldSize),
     m_SeparationLine()
     //m_Preview(nullptr)
@@ -26,6 +27,7 @@ void Engine::start()
 {
     sf::Clock clock;
     sf::Time time{ sf::Time::Zero };
+    m_Sound.setBackgroundMusic();
     //GameLoop
     while (m_Window.isOpen())
     {
@@ -80,10 +82,18 @@ void Engine::events()
             }
             else if (Event.key.code == sf::Keyboard::Space) 
             {
-                //rotate();
+                rotate();
             }
             break;
         }
+    }
+}
+
+void Engine::rotate() {
+    if (!m_Tetromino) return;
+    m_Tetromino->rotate();
+    if (CollisionDetection(m_Tetromino->getBlockPositions())) {
+        m_Tetromino->revertState();
     }
 }
 

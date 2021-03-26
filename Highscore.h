@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include "Sound.h"
 
 class Highscore
 {
@@ -15,6 +17,8 @@ private:
 	int m_Score;
 	int m_BonusScore;
 	int m_LinesCleared;
+
+	Sound m_Sound;
 
 public:
 	Highscore(int fieldsize);

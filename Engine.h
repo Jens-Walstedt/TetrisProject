@@ -5,7 +5,7 @@
 #include "Tetromino.h"
 #include "Highscore.h"
 #include "Utility.h"
-
+#include "Sound.h"
 #include <iostream>
 
 class Engine
@@ -41,7 +41,7 @@ private:
 	bool isOccupied(int x, int y);
 
 	Highscore m_HighScore;
-	
+	Sound m_Sound;
 
 
 public:

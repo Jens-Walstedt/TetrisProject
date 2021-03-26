@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Highscore::Highscore(int fieldsize) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font()
+Highscore::Highscore(int fieldsize) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(), m_Sound()
 {
 	m_Score = 0;
 	m_LinesCleared = 0;
