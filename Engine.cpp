@@ -4,15 +4,17 @@ Engine::Engine() :
     m_FieldSize(36),
     m_Sound(),
     m_HighScore(m_FieldSize),
-    m_SeparationLine(),
+    m_GridBorder(),
     m_GridPosition(64, 64)
 
     //m_Preview(nullptr)
 {
     m_ElapsedTime = sf::Time::Zero;
-    m_SeparationLine.setSize(sf::Vector2f(1.f, 36.f * 36.f));
-    m_SeparationLine.setPosition(sf::Vector2f(12.f * m_FieldSize, 0));
-    m_SeparationLine.setFillColor(sf::Color::Black);
+    m_GridBorder.setSize(sf::Vector2f(10 * m_FieldSize, 18 * m_FieldSize));
+    m_GridBorder.setOutlineThickness(5.f);
+    m_GridBorder.setOutlineColor(sf::Color::Black);
+    m_GridBorder.setPosition(m_GridPosition);
+    m_GridBorder.setFillColor(sf::Color::Transparent);
 
 	m_Window.create(sf::VideoMode((18*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
@@ -107,7 +109,7 @@ void Engine::render(){
     //m_Window.draw(m_BackgroundSprite);
     m_HighScore.draw(m_Window);
     m_Window.draw(*m_Preview);
-    m_Window.draw(m_SeparationLine);
+    m_Window.draw(m_GridBorder);
     m_Window.display();
 }
 
@@ -136,6 +138,7 @@ void Engine::proceed(Movement move)
     {
         if (move == Movement::FallDown || move == Movement::PressDown)
         {
+            m_Sound.setCollisionSound();
             int id = m_Tetromino->getId();
             m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
             m_Tetromino.reset(nullptr);

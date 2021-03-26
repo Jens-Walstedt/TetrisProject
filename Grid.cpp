@@ -23,7 +23,8 @@ Grid::Grid(sf::Vector2i size, int blockSize, Engine& engine, sf::Vector2f startP
     m_FieldSize(blockSize),
     m_YRemoved(),
     m_Engine(engine),
-    m_startPosition(startPosition)
+    m_startPosition(startPosition),
+    m_Sound()
 {
     for (int x = 0; x < size.x; ++x) {
         for (int y = 0; y < size.y; ++y) {
@@ -149,6 +150,7 @@ void Grid::removeLines()
             }
         }
     }
+    m_Sound.setClearLineSound();
     m_YRemoved.clear();
     m_RemoveBlocks = false;
 }
