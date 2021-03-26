@@ -37,6 +37,7 @@ private:
 	void Direction();	// TODO: call Direction logic
 
 	bool CollisionDetection(std::array<sf::Vector2i, 4> block);		// Create grid
+	sf::Vector2f m_GridPosition;
 
 	bool isOccupied(int x, int y);
 

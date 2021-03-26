@@ -4,19 +4,21 @@ Engine::Engine() :
     m_FieldSize(36),
     m_Sound(),
     m_HighScore(m_FieldSize),
-    m_SeparationLine()
+    m_SeparationLine(),
+    m_GridPosition(64, 64)
+
     //m_Preview(nullptr)
 {
     m_ElapsedTime = sf::Time::Zero;
     m_SeparationLine.setSize(sf::Vector2f(1.f, 36.f * 36.f));
-    m_SeparationLine.setPosition(sf::Vector2f(10.f * 36.f, 0));
+    m_SeparationLine.setPosition(sf::Vector2f(10.f * m_FieldSize, 0));
     m_SeparationLine.setFillColor(sf::Color::Black);
 
 	m_Window.create(sf::VideoMode((12*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
-    m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, sf::Vector2f(50, 50));
+    m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     
     //m_BackgroundSprite.setTexture(m_Texture);
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
@@ -111,7 +113,7 @@ void Engine::render(){
 
 void Engine::createTetromino() {
 
-    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize});
+    m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
 
     if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions())) {
         m_Grid->clean();
@@ -119,7 +121,7 @@ void Engine::createTetromino() {
     }
 
     m_TetroId = getRandomNumber(6);
-    m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize});
+    m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
     m_Preview->setPosition(sf::Vector2i{ 11 * m_FieldSize, 11 * m_FieldSize });
 }
 
@@ -147,8 +149,8 @@ bool Engine::isOccupied(int x, int y)
     return m_Grid->getField(x, y)->m_Occupied;
 }
 
-bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block) {
-
+bool Engine::CollisionDetection(std::array<sf::Vector2i, 4> block) 
+{
     for (int i = 0; i < 4; ++i) {
 
         if (block[i].x < 0 || block[i].x > 9 || block[i].y > 17)

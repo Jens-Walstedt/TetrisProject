@@ -26,19 +26,21 @@ void Tetromino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for (int i = 0; i < 4; i++)
     {
-        m_Sprite.setPosition(m_Block[i].x * (float)m_FieldSize + m_Position.x,
-            m_Block[i].y * m_FieldSize + m_Position.y);
+        m_Sprite.setPosition(m_Block[i].x * (float)m_FieldSize + m_Position.x + m_GridPosition.x,
+            m_Block[i].y * m_FieldSize + m_Position.y + m_GridPosition.y);
         target.draw(m_Sprite);
     }
 }
 
 //public
-Tetromino::Tetromino(sf::Texture& texture, int blockId, int blockSize)
+Tetromino::Tetromino(sf::Texture& texture, int blockId, int blockSize, sf::Vector2f gridPosition)
     : m_BlockId(blockId),
     m_FieldSize(blockSize),
-    m_Position(sf::Vector2i(3 * m_FieldSize, m_FieldSize)),
+    m_GridPosition(gridPosition),
+    m_Position(sf::Vector2i(0 * m_FieldSize, 0 * m_FieldSize)),
     m_Sprite(sf::Sprite(texture, sf::IntRect{ (blockId % 7) * m_FieldSize, 0, m_FieldSize, m_FieldSize })),
     m_CurrentRotation(0)
+
 {    
     for (size_t i = 0; i < 4; ++i)
     {
@@ -148,7 +150,7 @@ int Tetromino::getId() const
 std::array<sf::Vector2i, 4> Tetromino::FuturePos(Movement move) const {
 
     std::array<sf::Vector2i, 4> blockPositions;
-    sf::Vector2i tempPosition{m_Position.x / m_FieldSize, m_Position.y / m_FieldSize};
+    sf::Vector2i tempPosition{(m_Position.x / m_FieldSize), (m_Position.y / m_FieldSize)};
 
     if (move == Movement::Left) {
         tempPosition.x--;
