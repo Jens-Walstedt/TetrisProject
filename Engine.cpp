@@ -134,6 +134,7 @@ void Engine::proceed(Movement move)
     {
         if (move == Movement::FallDown || move == Movement::PressDown)
         {
+            m_Sound.setCollisionSound();
             int id = m_Tetromino->getId();
             m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
             m_Tetromino.reset(nullptr);

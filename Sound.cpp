@@ -5,27 +5,27 @@ Sound::Sound()
 	m_BackgroundMusic.openFromFile("Game Theme.flac");
 	m_CollisionBuffer.loadFromFile("fall.wav");
 	m_ClearLineBuffer.loadFromFile("line.wav");
+	m_CollisionSound.setBuffer(m_CollisionBuffer);
+	m_ClearLineSound.setBuffer(m_ClearLineBuffer);
 }
 
 void Sound::setBackgroundMusic()
 {
 	m_BackgroundMusic.play();
-	m_BackgroundMusic.setVolume(10.f);
+	m_BackgroundMusic.setVolume(1.f);
 	m_BackgroundMusic.setLoop(true);
 }
 
-void Sound::setCollisionSound(sf::Sound m_CollisionSound)
+void Sound::setCollisionSound()
 {
-	m_CollisionSound.setBuffer(m_CollisionBuffer);
 	m_CollisionSound.play();
-	m_CollisionSound.setVolume(25.f);
+	m_CollisionSound.setVolume(30.f);
 }
 
-void Sound::setClearLineSound(sf::Sound m_ClearLineSound)
+void Sound::setClearLineSound()
 {
-	m_ClearLineSound.setBuffer(m_ClearLineBuffer);
 	m_ClearLineSound.play();
-	m_ClearLineSound.setVolume(25.f);
+	m_ClearLineSound.setVolume(30.f);
 }
 
 
