@@ -13,6 +13,7 @@ private:
 	const int m_FieldSize;
 	int m_CurrentRotation;
 	sf::Vector2i m_Position;
+	sf::Vector2f m_GridPosition;
 	std::array<sf::Vector2i, 4> m_Block;
 	std::array<sf::Vector2i, 4> m_OldBlock;
 	mutable sf::Sprite m_Sprite;
@@ -21,7 +22,7 @@ private:
 
 
 public:
-	Tetromino(sf::Texture& texture, int id, int blockSize);
+	Tetromino(sf::Texture& texture, int id, int blockSize, sf::Vector2f gridPosition);
 	void setPositionByFields(const sf::Vector2i& position);
 	std::array<sf::Vector2i, 4> getBlockPositions() const;
 
