@@ -26,7 +26,7 @@ private:
 	sf::Texture m_Background;
 
 	sf::RenderWindow m_Window;
-	sf::RectangleShape m_SeparationLine;
+	sf::RectangleShape m_GridBorder;
 
 	void update(const sf::Time& gameTime);
 	void events();
