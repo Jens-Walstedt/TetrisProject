@@ -12,7 +12,7 @@ Sound::Sound()
 void Sound::setBackgroundMusic()
 {
 	m_BackgroundMusic.play();
-	m_BackgroundMusic.setVolume(1.f);
+	m_BackgroundMusic.setVolume(10.f);
 	m_BackgroundMusic.setLoop(true);
 }
 
