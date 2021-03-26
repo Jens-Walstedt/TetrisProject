@@ -129,6 +129,12 @@ void Engine::createTetromino() {
 
 void Engine::proceed(Movement move)
 {
+    //Error checking
+    if (!m_Tetromino)
+    {
+        std::cout << "Error: NO tetromino in proceed loaded" << std::endl;
+    }
+
     if (!CollisionDetection(m_Tetromino->FuturePos(move))) 
     {
         m_Tetromino->direction(move);

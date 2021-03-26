@@ -1,6 +1,6 @@
 #include "Sound.h"
 
-Sound::Sound()
+Sound::Sound() 
 {
 	m_BackgroundMusic.openFromFile("Game Theme.flac");
 	m_CollisionBuffer.loadFromFile("fall.wav");
