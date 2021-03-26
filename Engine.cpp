@@ -11,10 +11,10 @@ Engine::Engine() :
 {
     m_ElapsedTime = sf::Time::Zero;
     m_SeparationLine.setSize(sf::Vector2f(1.f, 36.f * 36.f));
-    m_SeparationLine.setPosition(sf::Vector2f(10.f * m_FieldSize, 0));
+    m_SeparationLine.setPosition(sf::Vector2f(12.f * m_FieldSize, 0));
     m_SeparationLine.setFillColor(sf::Color::Black);
 
-	m_Window.create(sf::VideoMode((12*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
+	m_Window.create(sf::VideoMode((18*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };

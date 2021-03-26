@@ -16,17 +16,17 @@ Highscore::Highscore(int fieldsize) : m_ScoreText(), m_LvlText(), m_LinesCleared
 	m_ScoreText.setFont(m_Font);
 	m_ScoreText.setFillColor(sf::Color::Black);
 	m_ScoreText.setCharacterSize(15);
-	m_ScoreText.setPosition(sf::Vector2f{ 10 * (float)m_FieldSize + 3, 50.f });
+	m_ScoreText.setPosition(sf::Vector2f{ 13 * (float)m_FieldSize + 3, 50.f });
 
 	m_LvlText.setFont(m_Font);
 	m_LvlText.setFillColor(sf::Color::Black);
 	m_LvlText.setCharacterSize(15);
-	m_LvlText.setPosition(sf::Vector2f{ 10 * (float)m_FieldSize + 3, 100.f });
+	m_LvlText.setPosition(sf::Vector2f{ 13 * (float)m_FieldSize + 3, 100.f });
 
 	m_LinesClearedText.setFont(m_Font);
 	m_LinesClearedText.setFillColor(sf::Color::Black);
 	m_LinesClearedText.setCharacterSize(15);
-	m_LinesClearedText.setPosition(sf::Vector2f{ 10 * (float)m_FieldSize + 3, 150.f });
+	m_LinesClearedText.setPosition(sf::Vector2f{ 13 * (float)m_FieldSize + 3, 150.f });
 }
 
 void Highscore::reset() {
