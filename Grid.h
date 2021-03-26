@@ -31,13 +31,15 @@ private:
 
 	Engine& m_Engine;
 	sf::Vector2i m_Size;
+	sf::Vector2f m_startPosition;
 	std::vector<int> m_YRemoved;
 	float m_ElapsedTime;
 	bool m_RemoveBlocks;
 	int m_FieldSize;
+	
 
 public:
-	Grid(sf::Vector2i size, int blockSize, Engine& engine);
+	Grid(sf::Vector2i size, int blockSize, Engine& enginem, sf::Vector2f startPosition);
 	void addBlock(int id, std::array<sf::Vector2i, 4> block);
 	void update(const sf::Time& gameTime);
 	void draw(sf::RenderWindow& window);
