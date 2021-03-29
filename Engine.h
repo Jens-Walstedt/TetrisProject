@@ -27,6 +27,7 @@ private:
 
 	sf::RenderWindow m_Window;
 	sf::RectangleShape m_GridBorder;
+	sf::View view;
 
 	void update(const sf::Time& gameTime);
 	void events();

@@ -6,7 +6,6 @@ Engine::Engine() :
     m_HighScore(m_FieldSize),
     m_GridBorder(),
     m_GridPosition(64, 64)
-
     //m_Preview(nullptr)
 {
     m_ElapsedTime = sf::Time::Zero;
@@ -15,6 +14,7 @@ Engine::Engine() :
     m_GridBorder.setOutlineColor(sf::Color::Black);
     m_GridBorder.setPosition(m_GridPosition);
     m_GridBorder.setFillColor(sf::Color::Transparent);
+
 
 	m_Window.create(sf::VideoMode((12*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
