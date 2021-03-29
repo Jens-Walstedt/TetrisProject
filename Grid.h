@@ -38,10 +38,10 @@ private:
 	bool m_RemoveBlocks;
 	int m_FieldSize;
 	
-	Sound m_Sound;
+	std::shared_ptr<Sound> m_Sound;
 
 public:
-	Grid(sf::Vector2i size, int blockSize, Engine& enginem, sf::Vector2f startPosition);
+	Grid(sf::Vector2i size, int blockSize, Engine& engine, sf::Vector2f startPosition);
 	void addBlock(int id, std::array<sf::Vector2i, 4> block);
 	void update(const sf::Time& gameTime);
 	void draw(sf::RenderWindow& window);

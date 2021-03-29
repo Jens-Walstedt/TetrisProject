@@ -18,10 +18,10 @@ private:
 	int m_BonusScore;
 	int m_LinesCleared;
 
-	Sound m_Sound;
+	std::shared_ptr<Sound> m_Sound;
 
 public:
-	Highscore(int fieldsize);
+	Highscore(int fieldsize, std::shared_ptr<Sound> sound);
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void addScore(int m_Score);

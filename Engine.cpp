@@ -3,7 +3,7 @@
 Engine::Engine() :
     m_FieldSize(36),
     m_Sound(),
-    m_HighScore(m_FieldSize),
+    m_HighScore(m_FieldSize, std::make_shared<Sound>(m_Sound)),
     m_GridBorder(),
     m_GridPosition(64, 64)
 
@@ -16,7 +16,7 @@ Engine::Engine() :
     m_GridBorder.setPosition(m_GridPosition);
     m_GridBorder.setFillColor(sf::Color::Transparent);
 
-	m_Window.create(sf::VideoMode((12*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
+	m_Window.create(sf::VideoMode((12*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };

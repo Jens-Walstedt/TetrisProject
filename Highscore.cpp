@@ -2,9 +2,8 @@
 #include <stdio.h>
 #include "Highscore.h"
 
-using namespace std;
 
-Highscore::Highscore(int fieldsize) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(), m_Sound()
+Highscore::Highscore(int fieldsize, std::shared_ptr<Sound> sound) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font()
 {
 	m_Score = 0;
 	m_LinesCleared = 0;
@@ -70,6 +69,11 @@ void Highscore::scoreSystem(int num)
 		break;
 	default:
 		break;
+	}
+
+	if (lvl>0)
+	{
+		m_Sound->speedUpMusic();
 	}
 }
 
