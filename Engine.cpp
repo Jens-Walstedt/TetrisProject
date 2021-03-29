@@ -69,10 +69,10 @@ void Engine::events()
     while (m_Window.pollEvent(Event)) {
         
         switch (Event.type) {
-        case sf::Event::Closed:
+        case sf::Event::Closed:                    
             m_Window.close();
             break;
-        case sf::Event::KeyPressed:
+        case sf::Event::KeyPressed:                                       
             if(Event.key.code == sf::Keyboard::S)
             {
                 proceed(Movement::PressDown);
