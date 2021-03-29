@@ -179,7 +179,7 @@ void Engine::holdAndSwapTetromino()
     if (m_HoldEmpty)
     {
         m_Hold = m_Tetromino;
-        m_HoldShape = m_Hold.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize, m_GridPosition });
+        m_HoldShape = std::make_shared<Tetromino>(*m_Tetromino);
         m_Hold->setPosition(sf::Vector2i{ 105, 64 });
         int id = m_Tetromino->getId();
         m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
