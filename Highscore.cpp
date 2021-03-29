@@ -15,17 +15,17 @@ Highscore::Highscore(int fieldsize, std::shared_ptr<Sound> sound) : m_ScoreText(
 	m_ScoreText.setFont(m_Font);
 	m_ScoreText.setFillColor(sf::Color::Black);
 	m_ScoreText.setCharacterSize(15);
-	m_ScoreText.setPosition(sf::Vector2f{ 10 * (float)m_FieldSize + 3, 50.f });
+	m_ScoreText.setPosition(sf::Vector2f{ 13 * (float)m_FieldSize + 3, 90.f });
 
 	m_LvlText.setFont(m_Font);
 	m_LvlText.setFillColor(sf::Color::Black);
 	m_LvlText.setCharacterSize(15);
-	m_LvlText.setPosition(sf::Vector2f{ 10 * (float)m_FieldSize + 3, 100.f });
+	m_LvlText.setPosition(sf::Vector2f{ 13 * (float)m_FieldSize + 3, 130.f });
 
 	m_LinesClearedText.setFont(m_Font);
 	m_LinesClearedText.setFillColor(sf::Color::Black);
 	m_LinesClearedText.setCharacterSize(15);
-	m_LinesClearedText.setPosition(sf::Vector2f{ 10 * (float)m_FieldSize + 3, 150.f });
+	m_LinesClearedText.setPosition(sf::Vector2f{ 13 * (float)m_FieldSize + 3, 180.f });
 }
 
 void Highscore::reset() {
@@ -79,6 +79,7 @@ void Highscore::scoreSystem(int num)
 
 void Highscore::update(const sf::Time& dt)
 {
+
 	m_ScoreText.setString(std::string{ "Score:\n" + std::to_string(m_Score) });
 	m_LvlText.setString(std::string{ "Level:\n" + std::to_string(m_LinesCleared / 10) });
 	m_LinesClearedText.setString(std::string{ "Lines:\n" + std::to_string(m_LinesCleared) });
@@ -89,3 +90,5 @@ int Highscore::getLvl() const
 {
 	return m_LinesCleared / 10;
 }
+
+

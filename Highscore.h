@@ -12,6 +12,8 @@ private:
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
 
+
+
 	int m_FieldSize;
 
 	int m_Score;
@@ -19,6 +21,8 @@ private:
 	int m_LinesCleared;
 
 	std::shared_ptr<Sound> m_Sound;
+
+	sf::Text textbox;
 
 public:
 	Highscore(int fieldsize, std::shared_ptr<Sound> sound);
