@@ -12,6 +12,8 @@ private:
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
 
+
+
 	int m_FieldSize;
 
 	int m_Score;
@@ -20,7 +22,10 @@ private:
 
 	Sound m_Sound;
 
+	sf::Text textbox;
+
 public:
+
 	Highscore(int fieldsize);
 	void draw(sf::RenderWindow& window);
 	void reset();

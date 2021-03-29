@@ -16,7 +16,19 @@ Engine::Engine() :
     m_GridBorder.setPosition(m_GridPosition);
     m_GridBorder.setFillColor(sf::Color::Transparent);
 
-	m_Window.create(sf::VideoMode((18*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
+    m_ScoreBorder1.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
+    m_ScoreBorder1.setOutlineThickness(5.f);
+    m_ScoreBorder1.setOutlineColor(sf::Color::Blue);
+    m_ScoreBorder1.setPosition(450, 64);
+    m_ScoreBorder1.setFillColor(sf::Color::Transparent);
+
+    m_ScoreBorder2.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
+    m_ScoreBorder2.setOutlineThickness(5.f);
+    m_ScoreBorder2.setOutlineColor(sf::Color::Red);
+    m_ScoreBorder2.setPosition(450, 320);
+    m_ScoreBorder2.setFillColor(sf::Color::Transparent);
+
+	m_Window.create(sf::VideoMode((14*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
@@ -110,6 +122,8 @@ void Engine::render(){
     m_HighScore.draw(m_Window);
     m_Window.draw(*m_Preview);
     m_Window.draw(m_GridBorder);
+    m_Window.draw(m_ScoreBorder1);
+    m_Window.draw(m_ScoreBorder2);
     m_Window.display();
 }
 
@@ -124,7 +138,7 @@ void Engine::createTetromino() {
 
     m_TetroId = getRandomNumber(6);
     m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
-    m_Preview->setPosition(sf::Vector2i{ 11 * m_FieldSize, 11 * m_FieldSize });
+    m_Preview->setPosition(sf::Vector2i{ 11 * m_FieldSize, 8 * m_FieldSize });
 }
 
 void Engine::proceed(Movement move)
