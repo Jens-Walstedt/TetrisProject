@@ -107,6 +107,10 @@ void Engine::events()
             {
                 rotate();
             }
+            else if (Event.key.code == sf::Keyboard::Tab)
+            {
+                holdAndSwapTetromino();
+            }
             break;
         }
     }
@@ -131,6 +135,10 @@ void Engine::render(){
     m_Window.draw(m_ScoreBorder);
     m_Window.draw(m_PreviewBorder);
     m_Window.draw(m_HoldBorder);
+    if (m_Hold)
+    {
+        m_Window.draw(m_Hold);
+    }
     m_Window.display();
 }
 
@@ -146,6 +154,7 @@ void Engine::createTetromino() {
     m_TetroId = getRandomNumber(6);
     m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
     m_Preview->setPosition(sf::Vector2i{ 11 * m_FieldSize, 8 * m_FieldSize });
+    m_Swapped = false;
 }
 
 void Engine::proceed(Movement move)
@@ -176,22 +185,27 @@ void Engine::proceed(Movement move)
 
 void Engine::holdAndSwapTetromino()
 {
+    Tetromino hold = *m_Tetromino;
     if (m_HoldEmpty)
     {
-        m_Hold = m_Tetromino;
-        m_HoldShape = std::make_shared<Tetromino>(*m_Tetromino);
-        m_Hold->setPosition(sf::Vector2i{ 105, 64 });
-        int id = m_Tetromino->getId();
-        m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
+        
+        //m_HoldShape = std::make_shared<Tetromino>(*m_Tetromino);
+        hold.setPosition(sf::Vector2i{ 20, 64 });
+        createTetromino();
         m_HoldEmpty = false;
     }
     else
     {
         if (!m_Swapped)
         {
-            auto temp = m_Hold;
-            m_Hold = m_Tetromino;
+            auto temp = hold;
+            //hold = m_Tetromino;
             m_Tetromino = temp;
+            /*m_HoldShape = std::make_shared<Tetromino>(*m_Tetromino);
+            m_CurrentShape = std::make_shared<Tetromino>(*m_Tetromino);*/
+
+
+            m_Swapped = true;
         }
     }
 }

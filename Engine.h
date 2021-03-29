@@ -21,7 +21,7 @@ private:
 	std::unique_ptr<Grid> m_Grid;
 	std::unique_ptr<Tetromino> m_Preview;
 	std::shared_ptr<Tetromino> m_Tetromino;
-	std::shared_ptr<Tetromino> m_Hold;
+	Tetromino m_Hold;
 
 	sf::Texture m_Texture;
 	sf::Texture m_Background;
@@ -44,7 +44,7 @@ private:
 
 	bool CollisionDetection(std::array<sf::Vector2i, 4> block);		// Create grid
 	sf::Vector2f m_GridPosition;
-	sf::Vector2i m_CurrentShape;
+	std::shared_ptr<Tetromino> m_CurrentShape;
 	std::shared_ptr<Tetromino> m_HoldShape;
 
 	bool isOccupied(int x, int y);
