@@ -3,7 +3,7 @@
 Engine::Engine() :
     m_FieldSize(36),
     m_Sound(),
-    m_HighScore(m_FieldSize, std::make_shared<Sound>(m_Sound)),
+    m_HighScore(m_FieldSize, m_Sound),
     m_GridBorder(),
     m_GridPosition(64, 64)
 

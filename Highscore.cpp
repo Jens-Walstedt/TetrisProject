@@ -3,7 +3,7 @@
 #include "Highscore.h"
 
 
-Highscore::Highscore(int fieldsize, std::shared_ptr<Sound> sound) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font()
+Highscore::Highscore(int fieldsize, Sound& sound) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(), m_Sound(sound)
 {
 	m_Score = 0;
 	m_LinesCleared = 0;
@@ -73,7 +73,7 @@ void Highscore::scoreSystem(int num)
 
 	if (lvl>0)
 	{
-		m_Sound->speedUpMusic();
+		m_Sound.speedUpMusic();
 	}
 }
 
