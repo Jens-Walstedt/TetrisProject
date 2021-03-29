@@ -28,8 +28,9 @@ private:
 	sf::RenderWindow m_Window;
 	sf::RectangleShape m_GridBorder;
 
-	sf::RectangleShape m_ScoreBorder1;
-	sf::RectangleShape m_ScoreBorder2;
+	sf::RectangleShape m_ScoreBorder;
+	sf::RectangleShape m_PreviewBorder;
+	sf::RectangleShape m_HoldBorder;
 
 	void update(const sf::Time& gameTime);
 	void events();
