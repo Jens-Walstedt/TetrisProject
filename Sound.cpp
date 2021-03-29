@@ -31,5 +31,5 @@ void Sound::setClearLineSound()
 
 void Sound::speedUpMusic()
 {
-	m_BackgroundMusic.setPitch(5.5f);
+	m_BackgroundMusic.setPitch(1.2f);
 }
