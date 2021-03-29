@@ -21,7 +21,7 @@ private:
 	std::unique_ptr<Grid> m_Grid;
 	std::unique_ptr<Tetromino> m_Preview;
 	std::shared_ptr<Tetromino> m_Tetromino;
-	Tetromino m_Hold;
+	std::shared_ptr<Tetromino> m_Hold;
 
 	sf::Texture m_Texture;
 	sf::Texture m_Background;

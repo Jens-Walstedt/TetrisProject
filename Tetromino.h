@@ -28,7 +28,7 @@ public:
 
 	void rotate();
 	void revertState();
-
+	sf::Vector2i getPosition();
 
 	std::array<sf::Vector2i, 4> FuturePos(Movement direction) const;
 

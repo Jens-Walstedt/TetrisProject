@@ -5,7 +5,8 @@ Engine::Engine() :
     m_Sound(),
     m_HighScore(m_FieldSize, m_Sound),
     m_GridBorder(),
-    m_GridPosition(264, 64)
+    m_GridPosition(264, 64),
+    m_HoldEmpty(true)
 
     //m_Preview(nullptr)
 {
@@ -137,7 +138,7 @@ void Engine::render(){
     m_Window.draw(m_HoldBorder);
     if (m_Hold)
     {
-        m_Window.draw(m_Hold);
+        m_Window.draw(*m_Hold);
     }
     m_Window.display();
 }
@@ -185,12 +186,12 @@ void Engine::proceed(Movement move)
 
 void Engine::holdAndSwapTetromino()
 {
-    Tetromino hold = *m_Tetromino;
     if (m_HoldEmpty)
     {
-        
-        //m_HoldShape = std::make_shared<Tetromino>(*m_Tetromino);
-        hold.setPosition(sf::Vector2i{ 20, 64 });
+        //sets hold tetromino to current
+        m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
+
+        m_Hold->setPosition(sf::Vector2i{ m_FieldSize * - 4, 64 });
         createTetromino();
         m_HoldEmpty = false;
     }
@@ -198,13 +199,15 @@ void Engine::holdAndSwapTetromino()
     {
         if (!m_Swapped)
         {
-            auto temp = hold;
-            //hold = m_Tetromino;
+            //swaps tetromino and hold
+            auto temp = std::make_shared<Tetromino>(*m_Hold);
+            m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
+            sf::Vector2i pos = m_Tetromino->getPosition();
+            m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -4, 64 });
             m_Tetromino = temp;
-            /*m_HoldShape = std::make_shared<Tetromino>(*m_Tetromino);
-            m_CurrentShape = std::make_shared<Tetromino>(*m_Tetromino);*/
-
-
+            m_Tetromino->setPosition(pos);
+            
+            //m_Swapped for only 1 swap per collision
             m_Swapped = true;
         }
     }
