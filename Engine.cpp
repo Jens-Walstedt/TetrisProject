@@ -168,11 +168,34 @@ void Engine::proceed(Movement move)
             m_Sound.setCollisionSound();
             int id = m_Tetromino->getId();
             m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
-            m_Tetromino.reset(nullptr);
+            m_Tetromino.reset();
             m_HighScore.sumScore();
         }
     }
 }
+
+void Engine::holdAndSwapTetromino()
+{
+    if (m_HoldEmpty)
+    {
+        m_Hold = m_Tetromino;
+        m_HoldShape = m_Hold.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize, m_GridPosition });
+        m_Hold->setPosition(sf::Vector2i{ 105, 64 });
+        int id = m_Tetromino->getId();
+        m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
+        m_HoldEmpty = false;
+    }
+    else
+    {
+        if (!m_Swapped)
+        {
+            auto temp = m_Hold;
+            m_Hold = m_Tetromino;
+            m_Tetromino = temp;
+        }
+    }
+}
+
 bool Engine::isOccupied(int x, int y)
 {
     return m_Grid->getField(x, y)->m_Occupied;
