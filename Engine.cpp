@@ -203,9 +203,12 @@ void Engine::holdAndSwapTetromino()
             auto temp = std::make_shared<Tetromino>(*m_Hold);
             m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
             sf::Vector2i pos = m_Tetromino->getPosition();
-            m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -4, 64 });
-            m_Tetromino = temp;
-            m_Tetromino->setPosition(pos);
+            temp->setPosition(pos);
+            if (!CollisionDetection(temp->getBlockPositions()))
+            {
+                m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -4, 64 });
+                m_Tetromino = temp;
+            }
             
             //m_Swapped for only 1 swap per collision
             m_Swapped = true;
