@@ -191,7 +191,7 @@ void Engine::holdAndSwapTetromino()
         //sets hold tetromino to current
         m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
 
-        m_Hold->setPosition(sf::Vector2i{ m_FieldSize * - 5, 64 });
+        m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -5, 34 });
         createTetromino();
         m_HoldEmpty = false;
     }
@@ -206,7 +206,7 @@ void Engine::holdAndSwapTetromino()
             if (!CollisionDetection(temp->getBlockPositions()))
             {
                 m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
-                m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -4, 64 });
+                m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -5, 34 });
                 m_Tetromino = temp;
                 //m_Swapped for only 1 swap per collision
                 m_Swapped = true;
