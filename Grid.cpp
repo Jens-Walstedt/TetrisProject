@@ -105,6 +105,7 @@ void Grid::clean()
             field->m_Info = nullptr;
         }
     }
+    
 }
 
 void Grid::markLinesToRemove()
