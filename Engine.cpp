@@ -5,7 +5,7 @@ Engine::Engine() :
     m_Sound(),
     m_HighScore(m_FieldSize, m_Sound),
     m_GridBorder(),
-    m_GridPosition(264, 64),
+    m_GridPosition(234, 64),
     m_HoldEmpty(true)
 
     //m_Preview(nullptr)
@@ -20,19 +20,19 @@ Engine::Engine() :
     m_ScoreBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
     m_ScoreBorder.setOutlineThickness(5.f);
     m_ScoreBorder.setOutlineColor(sf::Color::Blue);
-    m_ScoreBorder.setPosition(650, 64);
+    m_ScoreBorder.setPosition(615, 64);
     m_ScoreBorder.setFillColor(sf::Color::Transparent);
 
     m_PreviewBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
     m_PreviewBorder.setOutlineThickness(5.f);
     m_PreviewBorder.setOutlineColor(sf::Color::Red);
-    m_PreviewBorder.setPosition(650, 320);
+    m_PreviewBorder.setPosition(615, 320);
     m_PreviewBorder.setFillColor(sf::Color::Transparent);
 
-    m_HoldBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
+    m_HoldBorder.setSize(sf::Vector2f(5 * m_FieldSize, 6 * m_FieldSize));
     m_HoldBorder.setOutlineThickness(5.f);
     m_HoldBorder.setOutlineColor(sf::Color::Magenta);
-    m_HoldBorder.setPosition(104, 64);
+    m_HoldBorder.setPosition(20, 64);
     m_HoldBorder.setFillColor(sf::Color::Transparent);
 
 	m_Window.create(sf::VideoMode((20*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
@@ -191,7 +191,7 @@ void Engine::holdAndSwapTetromino()
         //sets hold tetromino to current
         m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
 
-        m_Hold->setPosition(sf::Vector2i{ m_FieldSize * - 4, 64 });
+        m_Hold->setPosition(sf::Vector2i{ m_FieldSize * - 5, 64 });
         createTetromino();
         m_HoldEmpty = false;
     }
@@ -203,7 +203,7 @@ void Engine::holdAndSwapTetromino()
             auto temp = std::make_shared<Tetromino>(*m_Hold);
             m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
             sf::Vector2i pos = m_Tetromino->getPosition();
-            m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -4, 64 });
+            m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -5, 64 });
             m_Tetromino = temp;
             m_Tetromino->setPosition(pos);
             
