@@ -116,6 +116,11 @@ void Tetromino::rotate() {
     }
 }
 
+sf::Vector2i Tetromino::getPosition()
+{
+    return m_Position;
+}
+
 void Tetromino::revertState() {
     m_Block = m_OldBlock;
 }
