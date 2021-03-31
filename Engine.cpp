@@ -6,7 +6,8 @@ Engine::Engine() :
     m_HighScore(m_FieldSize, m_Sound),
     m_GridBorder(),
     m_GridPosition(234, 64),
-    m_HoldEmpty(true)
+    m_HoldEmpty(true),
+    m_BackgroundSprite()
 
     //m_Preview(nullptr)
 {
@@ -16,6 +17,12 @@ Engine::Engine() :
     m_GridBorder.setOutlineColor(sf::Color::Black);
     m_GridBorder.setPosition(m_GridPosition);
     m_GridBorder.setFillColor(sf::Color::Transparent);
+
+    if (!m_Background.loadFromFile("tetrisbackground1.png")) {
+        std::cout << "Engine::Engine() - could not load m_Background\n";
+    };    
+    m_BackgroundSprite.setTexture(m_Background);
+    m_BackgroundSprite.setPosition(m_GridPosition);
 
     m_ScoreBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
     m_ScoreBorder.setOutlineThickness(5.f);
@@ -37,7 +44,7 @@ Engine::Engine() :
 
 	m_Window.create(sf::VideoMode((20*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
-        std::cout << "Game::Game() - could not load mTexture\n";
+        std::cout << "Engine::Engine() - could not load m_Texture\n";
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
