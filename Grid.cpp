@@ -107,6 +107,7 @@ void Grid::clean()
             field->m_Info = nullptr;
         }
     }
+    
 }
 
 void Grid::markLinesToRemove()
@@ -151,7 +152,7 @@ void Grid::removeLines()
             }
         }
     }
-    m_Sound.setClearLineSound();
+    m_Engine.m_Sound.setClearLineSound();
     m_YRemoved.clear();
     m_RemoveBlocks = false;
 }

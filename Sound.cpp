@@ -12,7 +12,8 @@ Sound::Sound()
 void Sound::setBackgroundMusic()
 {
 	m_BackgroundMusic.play();
-	m_BackgroundMusic.setVolume(10.f);
+	m_BackgroundMusic.setVolume(5.f);
+	//m_BackgroundMusic.setPitch(5.5f);
 	m_BackgroundMusic.setLoop(true);
 }
 
@@ -27,8 +28,6 @@ void Sound::setClearLineSound()
 	m_ClearLineSound.play();
 	m_ClearLineSound.setVolume(30.f);
 }
-
-
 
 void Sound::speedUpMusic()
 {

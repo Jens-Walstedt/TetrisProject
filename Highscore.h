@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include "Sound.h"
 
+class Sound;
 class Highscore
 {
 
@@ -12,16 +13,20 @@ private:
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
 
+
+
 	int m_FieldSize;
 
 	int m_Score;
 	int m_BonusScore;
 	int m_LinesCleared;
 
-	Sound m_Sound;
+	Sound& m_Sound;
+
+	sf::Text textbox;
 
 public:
-	Highscore(int fieldsize);
+	Highscore(int fieldsize, Sound& sound);
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void addScore(int m_Score);
