@@ -18,12 +18,6 @@ Engine::Engine() :
     m_GridBorder.setPosition(m_GridPosition);
     m_GridBorder.setFillColor(sf::Color::Transparent);
 
-    if (!m_Background.loadFromFile("tetrisbackground1.png")) {
-        std::cout << "Engine::Engine() - could not load m_Background\n";
-    };    
-    m_BackgroundSprite.setTexture(m_Background);
-    m_BackgroundSprite.setPosition(m_GridPosition);
-
     m_ScoreBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
     m_ScoreBorder.setOutlineThickness(5.f);
     m_ScoreBorder.setOutlineColor(sf::Color::Blue);
@@ -49,7 +43,13 @@ Engine::Engine() :
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
         , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5));
-    //m_BackgroundSprite.setTexture(m_Texture);
+
+    if (!m_Background.loadFromFile("tetrisbackground1.png")) {
+        std::cout << "Engine::Engine() - could not load m_Background\n";
+    };
+    m_BackgroundSprite.setTexture(m_Background);
+    m_BackgroundSprite.setPosition(m_GridPosition);
+
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
     createTetromino(); 
     
