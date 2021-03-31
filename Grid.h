@@ -38,7 +38,7 @@ private:
 	bool m_RemoveBlocks;
 	int m_FieldSize;
 	
-	std::shared_ptr<Sound> m_Sound;
+	//std::shared_ptr<Sound> m_Sound;
 	int m_Width, m_Height;
 	Sound m_Sound;
 

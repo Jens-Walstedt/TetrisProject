@@ -120,6 +120,10 @@ void Engine::events()
                 {
                     m_ShowMenu = true;
                 }
+                else if (Event.key.code == sf::Keyboard::Tab)
+                {
+                    holdAndSwapTetromino();
+                }
                 break;
             }
         }
