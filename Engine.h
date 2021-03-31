@@ -58,7 +58,7 @@ private:
 	bool isOccupied(int x, int y);
 	bool m_HoldEmpty;
 	bool m_Swapped;
-	bool Quit;
+	bool Quit = false;
 
 	Highscore m_HighScore;
 	Sound m_Sound;
