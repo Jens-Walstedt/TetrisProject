@@ -37,11 +37,11 @@ private:
 	float m_ElapsedTime;
 	bool m_RemoveBlocks;
 	int m_FieldSize;
-	
+	int m_Width, m_Height;
 	Sound m_Sound;
 
 public:
-	Grid(sf::Vector2i size, int blockSize, Engine& enginem, sf::Vector2f startPosition);
+	Grid(sf::Vector2i size, int blockSize, Engine& engine, sf::Vector2f startPosition);
 	void addBlock(int id, std::array<sf::Vector2i, 4> block);
 	void update(const sf::Time& gameTime);
 	void draw(sf::RenderWindow& window);
@@ -51,5 +51,7 @@ public:
 	void removeLines();
 	void blink();
 	Field* getField(int x, int y);
+	const int GetWidth();
+	const int GetHeight();
 };
 

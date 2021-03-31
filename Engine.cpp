@@ -6,7 +6,6 @@ Engine::Engine() :
     m_HighScore(m_FieldSize),
     m_GridBorder(),
     m_GridPosition(64, 64)
-    //m_Preview(nullptr)
 {
     m_ElapsedTime = sf::Time::Zero;
     m_GridBorder.setSize(sf::Vector2f(10 * m_FieldSize, 18 * m_FieldSize));
@@ -15,13 +14,14 @@ Engine::Engine() :
     m_GridBorder.setPosition(m_GridPosition);
     m_GridBorder.setFillColor(sf::Color::Transparent);
 
-
-	m_Window.create(sf::VideoMode((12*m_FieldSize) + 100, (18*m_FieldSize)), "Tetris", sf::Style::Default);
+    
+	m_Window.create(sf::VideoMode((12*m_FieldSize) + 100, (18*m_FieldSize + 100)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
         std::cout << "Game::Game() - could not load mTexture\n";
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
-    
+    m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
+        , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5));
     //m_BackgroundSprite.setTexture(m_Texture);
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
     createTetromino(); 
@@ -40,13 +40,15 @@ void Engine::start()
         time = clock.restart();
         m_ElapsedTime += time;
         events();
-        update(time);
-        if (m_ElapsedTime > fallSpeed)
+        if (!m_ShowMenu)
         {
-            m_ElapsedTime = sf::Time::Zero;
-            proceed(Movement::FallDown);
+            update(time);
+            if (m_ElapsedTime > fallSpeed)
+            {
+                m_ElapsedTime = sf::Time::Zero;
+                proceed(Movement::FallDown);
+            }
         }
-
         render();
     }
 }
@@ -67,32 +69,43 @@ void Engine::events()
     sf::Event Event;
 
     while (m_Window.pollEvent(Event)) {
-        
-        switch (Event.type) {
-        case sf::Event::Closed:                    
-            m_Window.close();
-            break;
-        case sf::Event::KeyPressed:                                       
-            if(Event.key.code == sf::Keyboard::S)
-            {
-                proceed(Movement::PressDown);
+        if (m_ShowMenu)
+        {
+            m_MenuWindow->Events(Event, m_ShowMenu);
+        }
+        else
+        {
+            switch (Event.type) {
+            case sf::Event::Closed:
+                m_Window.close();
+                break;
+            case sf::Event::KeyPressed:
+                if (Event.key.code == sf::Keyboard::S)
+                {
+                    proceed(Movement::PressDown);
+                }
+                else if (Event.key.code == sf::Keyboard::A)
+                {
+                    proceed(Movement::Left);
+                }
+                else if (Event.key.code == sf::Keyboard::D)
+                {
+                    proceed(Movement::Right);
+                }
+                else if (Event.key.code == sf::Keyboard::Space)
+                {
+                    rotate();
+                }
+                else if (Event.key.code == sf::Keyboard::Escape)
+                {
+                    m_ShowMenu = true;
+                }
+                break;
             }
-            else if (Event.key.code == sf::Keyboard::A) 
-            {
-                proceed(Movement::Left);
-            }
-            else if (Event.key.code == sf::Keyboard::D) 
-            {
-                proceed(Movement::Right);
-            }
-            else if (Event.key.code == sf::Keyboard::Space) 
-            {
-                rotate();
-            }
-            break;
         }
     }
 }
+
 
 void Engine::rotate() {
     if (!m_Tetromino) return;
@@ -110,6 +123,8 @@ void Engine::render(){
     m_HighScore.draw(m_Window);
     m_Window.draw(*m_Preview);
     m_Window.draw(m_GridBorder);
+    if(m_ShowMenu) m_MenuWindow->Draw(m_Window);
+    
     m_Window.display();
 }
 

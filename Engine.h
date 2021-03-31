@@ -6,6 +6,7 @@
 #include "Highscore.h"
 #include "Utility.h"
 #include "Sound.h"
+#include "MenuWindow.h"
 #include <iostream>
 
 class Engine
@@ -27,10 +28,13 @@ private:
 
 	sf::RenderWindow m_Window;
 	sf::RectangleShape m_GridBorder;
+	std::unique_ptr<MenuWindow> m_MenuWindow;
+	bool m_ShowMenu;
 	sf::View view;
-
+	
 	void update(const sf::Time& gameTime);
 	void events();
+	void DisplayMenu();
 	void render();
 	void createTetromino();
 	void rotate();		// TODO: call rotation logic

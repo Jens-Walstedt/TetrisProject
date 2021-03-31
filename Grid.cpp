@@ -17,14 +17,15 @@ Field& Field::operator=(const Field& field)
     return *this;
 }
 
-
 Grid::Grid(sf::Vector2i size, int blockSize, Engine& engine, sf::Vector2f startPosition)
     : m_Size(size),
     m_FieldSize(blockSize),
     m_YRemoved(),
     m_Engine(engine),
     m_startPosition(startPosition),
-    m_Sound()
+    m_Sound(),
+    m_Width(blockSize * size.x),
+    m_Height(blockSize * size.y)
 {
     for (int x = 0; x < size.x; ++x) {
         for (int y = 0; y < size.y; ++y) {
@@ -170,4 +171,14 @@ void Grid::blink()
 Field* Grid::getField(int x, int y)
 {
     return m_Fields[convert2D_to_1D(x, y)].get();
+}
+
+const int Grid::GetHeight()
+{
+    return m_Height;
+}
+
+const int Grid::GetWidth()
+{
+    return m_Width;
 }
