@@ -41,8 +41,10 @@ private:
 	void proceed(Movement move);		// TODO: call proceed logic
 	void holdAndSwapTetromino();
 	void Direction();	// TODO: call Direction logic
+	void QuitText();
 
 	bool CollisionDetection(std::array<sf::Vector2i, 4> block);		// Create grid
+	
 	sf::Vector2f m_GridPosition;
 	std::shared_ptr<Tetromino> m_CurrentShape;
 	std::shared_ptr<Tetromino> m_HoldShape;
@@ -50,6 +52,7 @@ private:
 	bool isOccupied(int x, int y);
 	bool m_HoldEmpty;
 	bool m_Swapped;
+	bool Quit;
 
 	Highscore m_HighScore;
 	Sound m_Sound;
@@ -58,5 +61,6 @@ private:
 public:
 	Engine();
 	void start();
+
 };
 

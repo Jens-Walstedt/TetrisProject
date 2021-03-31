@@ -49,11 +49,12 @@ Engine::Engine() :
 
 void Engine::start()
 {
+    Quit = false;
     sf::Clock clock;
     sf::Time time{ sf::Time::Zero };
     m_Sound.setBackgroundMusic();
     //GameLoop
-    while (m_Window.isOpen())
+    while (m_Window.isOpen() && Quit == false)
     {
         sf::Time fallSpeed{ sf::seconds(85.f / (85.f + (m_HighScore.getLvl() * (m_HighScore.getLvl() * 5.f)))) };
         time = clock.restart();
@@ -68,8 +69,14 @@ void Engine::start()
 
         render();
     }
+
+    QuitText();
+
 }
 
+void Engine::QuitText() {
+    std::cout << "Game over!" << std::endl;
+}
 
 void Engine::update(const sf::Time& gameTime)
 {
@@ -111,6 +118,10 @@ void Engine::events()
             else if (Event.key.code == sf::Keyboard::Tab)
             {
                 holdAndSwapTetromino();
+            }
+            else if (Event.key.code == sf::Keyboard::O)
+            {
+                Quit = true;
             }
             break;
         }

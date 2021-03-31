@@ -26,7 +26,9 @@ private:
 	sf::Text textbox;
 
 public:
+
 	Highscore(int fieldsize, Sound& sound);
+
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void addScore(int m_Score);
