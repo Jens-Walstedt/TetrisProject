@@ -159,9 +159,9 @@ void Engine::rotate() {
 
 void Engine::render(){
     m_Window.clear(sf::Color::Green);
+    m_Window.draw(m_BackgroundSprite);
     m_Grid->draw(m_Window);
     if (m_Tetromino) m_Window.draw(*m_Tetromino);
-    //m_Window.draw(m_BackgroundSprite);
     m_HighScore.draw(m_Window);
     m_Window.draw(*m_Preview);
     m_Window.draw(m_GridBorder);
