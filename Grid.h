@@ -38,7 +38,9 @@ private:
 	bool m_RemoveBlocks;
 	int m_FieldSize;
 	
-	std::shared_ptr<Sound> m_Sound;
+	//std::shared_ptr<Sound> m_Sound;
+	int m_Width, m_Height;
+	Sound m_Sound;
 
 public:
 	Grid(sf::Vector2i size, int blockSize, Engine& engine, sf::Vector2f startPosition);
@@ -51,5 +53,7 @@ public:
 	void removeLines();
 	void blink();
 	Field* getField(int x, int y);
+	const int GetWidth();
+	const int GetHeight();
 };
 

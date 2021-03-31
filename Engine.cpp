@@ -5,7 +5,7 @@ Engine::Engine() :
     m_Sound(),
     m_HighScore(m_FieldSize, m_Sound),
     m_GridBorder(),
-    m_GridPosition(264, 64),
+    m_GridPosition(234, 64),
     m_HoldEmpty(true)
 
     //m_Preview(nullptr)
@@ -20,19 +20,19 @@ Engine::Engine() :
     m_ScoreBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
     m_ScoreBorder.setOutlineThickness(5.f);
     m_ScoreBorder.setOutlineColor(sf::Color::Blue);
-    m_ScoreBorder.setPosition(650, 64);
+    m_ScoreBorder.setPosition(615, 64);
     m_ScoreBorder.setFillColor(sf::Color::Transparent);
 
     m_PreviewBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
     m_PreviewBorder.setOutlineThickness(5.f);
     m_PreviewBorder.setOutlineColor(sf::Color::Red);
-    m_PreviewBorder.setPosition(650, 320);
+    m_PreviewBorder.setPosition(615, 320);
     m_PreviewBorder.setFillColor(sf::Color::Transparent);
 
-    m_HoldBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
+    m_HoldBorder.setSize(sf::Vector2f(5 * m_FieldSize, 6 * m_FieldSize));
     m_HoldBorder.setOutlineThickness(5.f);
     m_HoldBorder.setOutlineColor(sf::Color::Magenta);
-    m_HoldBorder.setPosition(104, 64);
+    m_HoldBorder.setPosition(20, 64);
     m_HoldBorder.setFillColor(sf::Color::Transparent);
 
 	m_Window.create(sf::VideoMode((20*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
@@ -40,7 +40,8 @@ Engine::Engine() :
         std::cout << "Game::Game() - could not load mTexture\n";
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
-    
+    m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
+        , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5));
     //m_BackgroundSprite.setTexture(m_Texture);
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
     createTetromino(); 
@@ -60,13 +61,15 @@ void Engine::start()
         time = clock.restart();
         m_ElapsedTime += time;
         events();
-        update(time);
-        if (m_ElapsedTime > fallSpeed)
+        if (!m_ShowMenu)
         {
-            m_ElapsedTime = sf::Time::Zero;
-            proceed(Movement::FallDown);
+            update(time);
+            if (m_ElapsedTime > fallSpeed)
+            {
+                m_ElapsedTime = sf::Time::Zero;
+                proceed(Movement::FallDown);
+            }
         }
-
         render();
     }
 
@@ -93,40 +96,47 @@ void Engine::events()
     sf::Event Event;
 
     while (m_Window.pollEvent(Event)) {
-        
-        switch (Event.type) {
-        case sf::Event::Closed:
-            m_Window.close();
-            break;
-        case sf::Event::KeyPressed:
-            if(Event.key.code == sf::Keyboard::S)
-            {
-                proceed(Movement::PressDown);
+        if (m_ShowMenu)
+        {
+            m_MenuWindow->Events(Event, m_ShowMenu);
+        }
+        else
+        {
+            switch (Event.type) {
+            case sf::Event::Closed:
+                m_Window.close();
+                break;
+            case sf::Event::KeyPressed:
+                if (Event.key.code == sf::Keyboard::S)
+                {
+                    proceed(Movement::PressDown);
+                }
+                else if (Event.key.code == sf::Keyboard::A)
+                {
+                    proceed(Movement::Left);
+                }
+                else if (Event.key.code == sf::Keyboard::D)
+                {
+                    proceed(Movement::Right);
+                }
+                else if (Event.key.code == sf::Keyboard::Space)
+                {
+                    rotate();
+                }
+                else if (Event.key.code == sf::Keyboard::Escape)
+                {
+                    m_ShowMenu = true;
+                }
+                else if (Event.key.code == sf::Keyboard::Tab)
+                {
+                    holdAndSwapTetromino();
+                }
+                break;
             }
-            else if (Event.key.code == sf::Keyboard::A) 
-            {
-                proceed(Movement::Left);
-            }
-            else if (Event.key.code == sf::Keyboard::D) 
-            {
-                proceed(Movement::Right);
-            }
-            else if (Event.key.code == sf::Keyboard::Space) 
-            {
-                rotate();
-            }
-            else if (Event.key.code == sf::Keyboard::Tab)
-            {
-                holdAndSwapTetromino();
-            }
-            else if (Event.key.code == sf::Keyboard::O)
-            {
-                Quit = true;
-            }
-            break;
         }
     }
 }
+
 
 void Engine::rotate() {
     if (!m_Tetromino) return;
@@ -151,6 +161,8 @@ void Engine::render(){
     {
         m_Window.draw(*m_Hold);
     }
+    if(m_ShowMenu) m_MenuWindow->Draw(m_Window);
+    
     m_Window.display();
 }
 
@@ -202,7 +214,7 @@ void Engine::holdAndSwapTetromino()
         //sets hold tetromino to current
         m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
 
-        m_Hold->setPosition(sf::Vector2i{ m_FieldSize * - 4, 64 });
+        m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -5, 34 });
         createTetromino();
         m_HoldEmpty = false;
     }
@@ -212,14 +224,16 @@ void Engine::holdAndSwapTetromino()
         {
             //swaps tetromino and hold
             auto temp = std::make_shared<Tetromino>(*m_Hold);
-            m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
             sf::Vector2i pos = m_Tetromino->getPosition();
-            m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -4, 64 });
-            m_Tetromino = temp;
-            m_Tetromino->setPosition(pos);
-            
-            //m_Swapped for only 1 swap per collision
-            m_Swapped = true;
+            temp->setPosition(pos);
+            if (!CollisionDetection(temp->getBlockPositions()))
+            {
+                m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
+                m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -5, 34 });
+                m_Tetromino = temp;
+                //m_Swapped for only 1 swap per collision
+                m_Swapped = true;
+            }
         }
     }
 }
