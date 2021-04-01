@@ -1,6 +1,9 @@
 #include <iostream>
 #include <stdio.h>
+#include <string>
 #include "Highscore.h"
+#include <fstream>
+#include <utility>
 
 #include <fstream>
 #include <utility>
@@ -10,6 +13,7 @@
 Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(font), m_Sound(sound)
 {
 	m_Score = 0;
+	score = m_Score;
 	m_LinesCleared = 0;
 	m_BonusScore = 0;
 	m_FieldSize = fieldsize;
@@ -30,12 +34,16 @@ Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(
 	m_LinesClearedText.setPosition(sf::Vector2f{ 18 * (float)m_FieldSize + 3, 180.f });
 }
 
-void Highscore::reset() {
+void Highscore::reset() 
+{
+	writeToFile();												//	< --- ---  Under construct  --- ---	
+	printHighscore();
 	m_LinesCleared = 0;
 	m_Score = 0;
 }
 
-void Highscore::addScore(int score) {
+void Highscore::addScore(int score) 
+{
 	m_BonusScore += score;
 }
 
@@ -96,4 +104,68 @@ int Highscore::getLvl() const
 	return m_LinesCleared / 10;
 }
 
+void Highscore::writeToFile()
+{
+	//check if score is under 3
+	if (scores.size() < 3)
+	{
+	scores.push_back(m_Score);
+	}
+	else if (scores.size() >= 3)
+	{
+		ReplaceHigherScore();
+	}
 
+	//check if 3
+	
+	std::ofstream file;
+	file.open("Score.txt");
+	for (int score : scores) 
+	{
+		file << score << std::endl;				
+	}
+	file.close();	
+
+}
+
+bool Highscore::ReplaceHigherScore()
+{
+	//sort vector
+	std::sort(scores.begin(), scores.end());
+	
+	//get lowest value and replace it 
+	int current = 0;
+	bool isBigger = false;
+	for (int i = 0; i < scores.size(); i++)
+	{
+		if (m_Score > scores[i])
+		{
+			current++;
+			isBigger = true;
+		}
+	}
+	if (isBigger)
+	{
+		scores[current] = m_Score;
+	}
+	return isBigger;
+}
+
+void Highscore::loadFromFile()
+{
+
+	std::ifstream file;
+	std::string line;
+	file.open("Score.txt", std::ios::app);
+	while(file.is_open())
+		{
+			std::getline(file, line);
+			scores.push_back(std::stoi(line));
+		} 
+	file.close();
+}
+
+void Highscore::printHighscore() 
+{
+	std::cout << "Highscore: " << m_Score << std::endl;
+}
