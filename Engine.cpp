@@ -15,8 +15,8 @@ Engine::Engine() :
     m_Font.loadFromFile("MontserratAlternates-Bold.otf");
     m_ElapsedTime = sf::Time::Zero;
     m_GridBorder.setSize(sf::Vector2f(10 * m_FieldSize, 18 * m_FieldSize));
-    m_GridBorder.setOutlineThickness(5.f);
-    m_GridBorder.setOutlineColor(sf::Color::Black);
+    m_GridBorder.setOutlineThickness(2.f);
+    m_GridBorder.setOutlineColor(sf::Color::White);
     m_GridBorder.setPosition(m_GridPosition);
     m_GridBorder.setFillColor(sf::Color::Transparent);
 
