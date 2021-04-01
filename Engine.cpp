@@ -22,19 +22,19 @@ Engine::Engine() :
 
     m_ScoreBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
     m_ScoreBorder.setOutlineThickness(5.f);
-    m_ScoreBorder.setOutlineColor(sf::Color::Blue);
+    m_ScoreBorder.setOutlineColor(sf::Color::White);
     m_ScoreBorder.setPosition(615, 64);
     m_ScoreBorder.setFillColor(sf::Color::Transparent);
 
     m_PreviewBorder.setSize(sf::Vector2f(4 * m_FieldSize, 6 * m_FieldSize));
     m_PreviewBorder.setOutlineThickness(5.f);
-    m_PreviewBorder.setOutlineColor(sf::Color::Red);
+    m_PreviewBorder.setOutlineColor(sf::Color::White);
     m_PreviewBorder.setPosition(615, 320);
     m_PreviewBorder.setFillColor(sf::Color::Transparent);
 
     m_HoldBorder.setSize(sf::Vector2f(5 * m_FieldSize, 6 * m_FieldSize));
     m_HoldBorder.setOutlineThickness(5.f);
-    m_HoldBorder.setOutlineColor(sf::Color::Magenta);
+    m_HoldBorder.setOutlineColor(sf::Color::White);
     m_HoldBorder.setPosition(20, 64);
     m_HoldBorder.setFillColor(sf::Color::Transparent);
 
@@ -160,7 +160,7 @@ void Engine::rotate() {
 }
 
 void Engine::render(){
-    m_Window.clear(sf::Color::Green);
+    m_Window.clear(sf::Color::Black);
     m_Window.draw(m_BackgroundSprite);
     m_Grid->draw(m_Window);
     if (m_Tetromino) m_Window.draw(*m_Tetromino);

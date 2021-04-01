@@ -19,17 +19,17 @@ Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(
 	m_FieldSize = fieldsize;
 
 	m_ScoreText.setFont(m_Font);
-	m_ScoreText.setFillColor(sf::Color::Black);
+	m_ScoreText.setFillColor(sf::Color::White);
 	m_ScoreText.setCharacterSize(15);
 	m_ScoreText.setPosition(sf::Vector2f{ 18 * (float)m_FieldSize + 3, 90.f });
 
 	m_LvlText.setFont(m_Font);
-	m_LvlText.setFillColor(sf::Color::Black);
+	m_LvlText.setFillColor(sf::Color::White);
 	m_LvlText.setCharacterSize(15);
 	m_LvlText.setPosition(sf::Vector2f{ 18 * (float)m_FieldSize + 3, 130.f });
 
 	m_LinesClearedText.setFont(m_Font);
-	m_LinesClearedText.setFillColor(sf::Color::Black);
+	m_LinesClearedText.setFillColor(sf::Color::White);
 	m_LinesClearedText.setCharacterSize(15);
 	m_LinesClearedText.setPosition(sf::Vector2f{ 18 * (float)m_FieldSize + 3, 180.f });
 }
