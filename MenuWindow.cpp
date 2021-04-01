@@ -3,6 +3,7 @@
 MenuWindow::MenuWindow(sf::Vector2f position, sf::Vector2f dimension, sf::Font font):
 m_Font(font)
 {
+	m_Selected = 0;
 	m_Rect = sf::RectangleShape(dimension);
 	m_Rect.setPosition(position);
 	m_Rect.setOutlineThickness(5.f);
@@ -21,9 +22,8 @@ void MenuWindow::Init()
 	for (size_t i = 0; i < menu.size(); i++)
 	{
 		menu[i].setFillColor(sf::Color::Black);
-		menu[i].setPosition(m_Rect.getPosition().x + 20, m_Rect.getPosition().y + 20 * i);
+		menu[i].setPosition(m_Rect.getPosition().x + 80, m_Rect.getPosition().y + 64 * i);
 	}
-
 }
 
 void MenuWindow::Events(sf::Event event, bool& showMenu)
@@ -33,11 +33,11 @@ void MenuWindow::Events(sf::Event event, bool& showMenu)
 	case sf::Event::KeyPressed:
 		if (event.key.code == sf::Keyboard::S)
 		{
-
+			selected(1);
 		}
 		else if (event.key.code == sf::Keyboard::W)
 		{
-
+			selected(-1);
 		}
 		else if (event.key.code == sf::Keyboard::A)
 		{
@@ -55,6 +55,23 @@ void MenuWindow::Events(sf::Event event, bool& showMenu)
 	}
 }
 
+void MenuWindow::selected(int change)
+{
+	menu[m_Selected].setFillColor(sf::Color::Black);
+	m_Selected += change;
+	if (m_Selected >= static_cast<int>(menu.size()))
+	{
+		m_Selected = 0;
+	}
+	else if (m_Selected < 0)
+	{
+		m_Selected = menu.size() - 1;
+	}
+	
+	menu[m_Selected].setFillColor(sf::Color::White);
+	
+}
+
 void MenuWindow::Update()
 {
 
@@ -62,6 +79,7 @@ void MenuWindow::Update()
 
 void MenuWindow::Draw(sf::RenderWindow& window)
 {
+	
 	window.draw(m_Rect);
 	for (size_t i = 0; i < menu.size(); i++)
 	{

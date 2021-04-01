@@ -37,7 +37,7 @@ Tetromino::Tetromino(sf::Texture& texture, int blockId, int blockSize, sf::Vecto
     : m_BlockId(blockId),
     m_FieldSize(blockSize),
     m_GridPosition(gridPosition),
-    m_Position(sf::Vector2i(0 * m_FieldSize, 0 * m_FieldSize)),
+    m_Position(sf::Vector2i(4 * m_FieldSize, 0 * m_FieldSize)),
     m_Sprite(sf::Sprite(texture, sf::IntRect{ (blockId % 7) * m_FieldSize, 0, m_FieldSize, m_FieldSize })),
     m_CurrentRotation(0)
 
