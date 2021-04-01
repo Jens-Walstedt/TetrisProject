@@ -159,9 +159,11 @@ std::array<sf::Vector2i, 4> Tetromino::FuturePos(Movement move) const {
 
     if (move == Movement::Left) {
         tempPosition.x--;
-    } else if (move == Movement::Right) {
+    }
+    else if (move == Movement::Right) {
         tempPosition.x++;
-    } else {
+    }
+    else {
         tempPosition.y++;
     }
 

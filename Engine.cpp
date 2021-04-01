@@ -128,6 +128,14 @@ void Engine::events()
                 {
                     proceed(Movement::Right);
                 }
+                else if (Event.key.code == sf::Keyboard::W)
+                {
+                    bool run = true;
+                    while (run)
+                    {
+                        run = proceed(Movement::HardDown);
+                    }
+                }
                 else if (Event.key.code == sf::Keyboard::Space)
                 {
                     rotate();
@@ -193,8 +201,9 @@ void Engine::createTetromino() {
     m_Swapped = false;
 }
 
-void Engine::proceed(Movement move)
+bool Engine::proceed(Movement move)
 {
+    bool collision = false;
     //Error checking
     if (!m_Tetromino)
     {
@@ -208,15 +217,18 @@ void Engine::proceed(Movement move)
     }
     else
     {
-        if (move == Movement::FallDown || move == Movement::PressDown)
+        if (move == Movement::FallDown || move == Movement::PressDown || move == Movement::HardDown)
         {
             m_Sound.setCollisionSound();
             int id = m_Tetromino->getId();
             m_Grid->addBlock(id, m_Tetromino->getBlockPositions());
             m_Tetromino.reset();
             m_HighScore.sumScore();
+            collision = true;
         }
+        
     }
+    return collision;
 }
 
 void Engine::holdAndSwapTetromino()

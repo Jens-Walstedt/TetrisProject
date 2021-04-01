@@ -45,7 +45,7 @@ private:
 	void render();
 	void createTetromino();
 	void rotate();		// TODO: call rotation logic
-	void proceed(Movement move);		// TODO: call proceed logic
+	bool proceed(Movement move);		// TODO: call proceed logic
 	void holdAndSwapTetromino();
 	void Direction();	// TODO: call Direction logic
 	void QuitText();
