@@ -130,10 +130,10 @@ void Engine::events()
                 }
                 else if (Event.key.code == sf::Keyboard::W)
                 {
-                    bool run = true;
-                    while (run)
+                    bool collided = false;
+                    while (!collided)
                     {
-                        run = proceed(Movement::HardDown);
+                        collided = proceed(Movement::HardDown);
                     }
                 }
                 else if (Event.key.code == sf::Keyboard::Space)
@@ -204,13 +204,15 @@ void Engine::createTetromino() {
 bool Engine::proceed(Movement move)
 {
     bool collision = false;
+    
     //Error checking
     if (!m_Tetromino)
     {
+        return false;
         std::cout << "Error: NO tetromino in proceed loaded" << std::endl;
     }
 
-    if (!CollisionDetection(m_Tetromino->FuturePos(move))) 
+    if (!CollisionDetection(m_Tetromino->FuturePos(move)))
     {
         m_Tetromino->direction(move);
         if (move == Movement::PressDown) m_HighScore.addScore(1);
@@ -225,8 +227,7 @@ bool Engine::proceed(Movement move)
             m_Tetromino.reset();
             m_HighScore.sumScore();
             collision = true;
-        }
-        
+        }   
     }
     return collision;
 }
