@@ -6,7 +6,8 @@ Engine::Engine() :
     m_HighScore(m_FieldSize, m_Sound),
     m_GridBorder(),
     m_GridPosition(234, 64),
-    m_HoldEmpty(true)
+    m_HoldEmpty(true),
+    m_BackgroundSprite()
 
     //m_Preview(nullptr)
 {
@@ -37,12 +38,18 @@ Engine::Engine() :
 
 	m_Window.create(sf::VideoMode((20*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
     if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
-        std::cout << "Game::Game() - could not load mTexture\n";
+        std::cout << "Engine::Engine() - could not load m_Texture\n";
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
         , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5));
-    //m_BackgroundSprite.setTexture(m_Texture);
+
+    if (!m_Background.loadFromFile("tetrisbackground1.png")) {
+        std::cout << "Engine::Engine() - could not load m_Background\n";
+    };
+    m_BackgroundSprite.setTexture(m_Background);
+    m_BackgroundSprite.setPosition(m_GridPosition);
+
     //m_Grid->addBlock(0, m_Tetromino->getBlockPositions());
     createTetromino(); 
     
@@ -152,9 +159,9 @@ void Engine::rotate() {
 
 void Engine::render(){
     m_Window.clear(sf::Color::Green);
+    m_Window.draw(m_BackgroundSprite);
     m_Grid->draw(m_Window);
     if (m_Tetromino) m_Window.draw(*m_Tetromino);
-    //m_Window.draw(m_BackgroundSprite);
     m_HighScore.draw(m_Window);
     m_Window.draw(*m_Preview);
     m_Window.draw(m_GridBorder);

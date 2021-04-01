@@ -168,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Pictures\Tetris\Blocks.png" />
+    <Image Include="tetrisbackground1.png" />
     <Image Include="TetrisTextur.png" />
     <Image Include="TetrisTextur2.png" />
   </ItemGroup>
