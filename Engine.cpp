@@ -46,7 +46,7 @@ Engine::Engine() :
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
         , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font);
 
-    if (!m_Background.loadFromFile("tetrisbackground1.png")) {
+    if (!m_Background.loadFromFile("tetrisbackground18.png")) {
         std::cout << "Engine::Engine() - could not load m_Background\n";
     };
     m_BackgroundSprite.setTexture(m_Background);

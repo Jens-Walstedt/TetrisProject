@@ -2,9 +2,9 @@
 #include "Engine.h"
 #include <iostream>
 
-FieldInfo::FieldInfo(sf::Texture& texture, int id, int blockSize)
+FieldInfo::FieldInfo(sf::Texture& texture, int id, int fieldSize)
 {
-    sf::IntRect rect{ (id % 7) * blockSize, 0, blockSize, blockSize};
+    sf::IntRect rect{ (id % 7) * fieldSize, 0, fieldSize, fieldSize};
     m_Sprite.setTexture(texture);
     m_Sprite.setTextureRect(rect);
 }
@@ -17,15 +17,15 @@ Field& Field::operator=(const Field& field)
     return *this;
 }
 
-Grid::Grid(sf::Vector2i size, int blockSize, Engine& engine, sf::Vector2f startPosition)
+Grid::Grid(sf::Vector2i size, int fieldSize, Engine& engine, sf::Vector2f startPosition)
     : m_Size(size),
-    m_FieldSize(blockSize),
+    m_FieldSize(fieldSize),
     m_YRemoved(),
     m_Engine(engine),
     m_startPosition(startPosition),
     m_Sound(),
-    m_Width(blockSize * size.x),
-    m_Height(blockSize * size.y)
+    m_Width(fieldSize * size.x),
+    m_Height(fieldSize * size.y)
 {
     for (int x = 0; x < size.x; ++x) {
         for (int y = 0; y < size.y; ++y) {
@@ -34,7 +34,7 @@ Grid::Grid(sf::Vector2i size, int blockSize, Engine& engine, sf::Vector2f startP
     }
 
     for (int id = 0; id < 7; ++id) {
-        m_FieldInfos[id] = std::make_unique<FieldInfo>(m_Engine.m_Texture, id, blockSize);
+        m_FieldInfos[id] = std::make_unique<FieldInfo>(m_Engine.m_Texture, id, fieldSize);
     }
 }
 
