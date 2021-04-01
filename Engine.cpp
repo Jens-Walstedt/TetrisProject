@@ -3,7 +3,8 @@
 Engine::Engine() :
     m_FieldSize(36),
     m_Sound(),
-    m_HighScore(m_FieldSize, m_Sound),
+    m_Font(),
+    m_HighScore(m_FieldSize, m_Sound, m_Font),
     m_GridBorder(),
     m_GridPosition(234, 64),
     m_HoldEmpty(true),
@@ -11,6 +12,7 @@ Engine::Engine() :
 
     //m_Preview(nullptr)
 {
+    m_Font.loadFromFile("MontserratAlternates-Bold.otf");
     m_ElapsedTime = sf::Time::Zero;
     m_GridBorder.setSize(sf::Vector2f(10 * m_FieldSize, 18 * m_FieldSize));
     m_GridBorder.setOutlineThickness(5.f);
@@ -42,7 +44,7 @@ Engine::Engine() :
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
-        , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5));
+        , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font);
 
     if (!m_Background.loadFromFile("tetrisbackground1.png")) {
         std::cout << "Engine::Engine() - could not load m_Background\n";

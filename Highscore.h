@@ -8,7 +8,7 @@ class Highscore
 {
 
 private:
-	sf::Font m_Font;
+	sf::Font &m_Font;
 	sf::Text m_LvlText;
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
@@ -27,8 +27,7 @@ private:
 
 public:
 
-	Highscore(int fieldsize, Sound& sound);
-
+	Highscore(int fieldsize, Sound& sound, sf::Font &font);
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void addScore(int m_Score);

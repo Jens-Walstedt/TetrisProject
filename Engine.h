@@ -14,6 +14,7 @@ class Engine
 	friend class Grid;
 private:
 	sf::Sprite m_BackgroundSprite; //TEST
+	sf::Font m_Font;
 
 	int m_TetroId;
 	int m_FieldSize;

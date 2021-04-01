@@ -2,15 +2,17 @@
 #include <stdio.h>
 #include "Highscore.h"
 
+#include <fstream>
+#include <utility>
+#include <string>
 
-Highscore::Highscore(int fieldsize, Sound& sound) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(), m_Sound(sound)
+
+Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(font), m_Sound(sound)
 {
 	m_Score = 0;
 	m_LinesCleared = 0;
 	m_BonusScore = 0;
 	m_FieldSize = fieldsize;
-
-	m_Font.loadFromFile("MontserratAlternates-Bold.otf");
 
 	m_ScoreText.setFont(m_Font);
 	m_ScoreText.setFillColor(sf::Color::Black);
@@ -79,10 +81,13 @@ void Highscore::scoreSystem(int num)
 
 void Highscore::update(const sf::Time& dt)
 {
-
 	m_ScoreText.setString(std::string{ "Score:\n" + std::to_string(m_Score) });
 	m_LvlText.setString(std::string{ "Level:\n" + std::to_string(m_LinesCleared / 10) });
 	m_LinesClearedText.setString(std::string{ "Lines:\n" + std::to_string(m_LinesCleared) });
+	
+
+
+		
 }
 
 
