@@ -182,7 +182,6 @@ void Engine::render(){
 void Engine::createTetromino() {
 
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
-
     if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions())) {
         m_Grid->clean();
         m_HighScore.reset();
@@ -222,13 +221,14 @@ void Engine::proceed(Movement move)
 
 void Engine::holdAndSwapTetromino()
 {
+    sf::Vector2i pos = m_Tetromino->getPosition();
     if (m_HoldEmpty)
     {
         //sets hold tetromino to current
         m_Hold = std::make_shared<Tetromino>(*m_Tetromino);
-
         m_Hold->setPosition(sf::Vector2i{ m_FieldSize * -5, 34 });
         createTetromino();
+        m_Tetromino->setPosition(pos);
         m_HoldEmpty = false;
     }
     else
@@ -237,7 +237,6 @@ void Engine::holdAndSwapTetromino()
         {
             //swaps tetromino and hold
             auto temp = std::make_shared<Tetromino>(*m_Hold);
-            sf::Vector2i pos = m_Tetromino->getPosition();
             temp->setPosition(pos);
             if (!CollisionDetection(temp->getBlockPositions()))
             {
