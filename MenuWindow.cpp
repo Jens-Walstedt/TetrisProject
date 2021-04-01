@@ -28,7 +28,8 @@ void MenuWindow::Init()
 
 void MenuWindow::Events(sf::Event event, bool& showMenu)
 {
-	switch (event.type) {
+	switch (event.type) 
+	{
 	case sf::Event::KeyPressed:
 		if (event.key.code == sf::Keyboard::S)
 		{

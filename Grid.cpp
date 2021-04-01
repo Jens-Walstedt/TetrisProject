@@ -27,13 +27,16 @@ Grid::Grid(sf::Vector2i size, int fieldSize, Engine& engine, sf::Vector2f startP
     m_Width(fieldSize * size.x),
     m_Height(fieldSize * size.y)
 {
-    for (int x = 0; x < size.x; ++x) {
-        for (int y = 0; y < size.y; ++y) {
+    for (int x = 0; x < size.x; ++x)
+    {
+        for (int y = 0; y < size.y; ++y) 
+        {
             m_Fields[convert2D_to_1D(x, y)] = std::make_unique<Field>();
         }
     }
 
-    for (int id = 0; id < 7; ++id) {
+    for (int id = 0; id < 7; ++id) 
+    {
         m_FieldInfos[id] = std::make_unique<FieldInfo>(m_Engine.m_Texture, id, fieldSize);
     }
 }
@@ -70,8 +73,10 @@ int Grid::convert2D_to_1D(int x, int y)
 
 void Grid::draw(sf::RenderWindow& window)
 {
-    for (int x = 0; x < m_Size.x; ++x) {
-        for (int y = 0; y < m_Size.y; ++y) {
+    for (int x = 0; x < m_Size.x; ++x) 
+    {
+        for (int y = 0; y < m_Size.y; ++y) 
+        {
             auto field = getField(x, y);
             //if field has not been occupied yet, mInfo would be assigned to nullptr
             if (field->m_Occupied && field->m_Visible) {

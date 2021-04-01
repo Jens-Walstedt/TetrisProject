@@ -91,11 +91,7 @@ void Highscore::update(const sf::Time& dt)
 {
 	m_ScoreText.setString(std::string{ "Score:\n" + std::to_string(m_Score) });
 	m_LvlText.setString(std::string{ "Level:\n" + std::to_string(m_LinesCleared / 10) });
-	m_LinesClearedText.setString(std::string{ "Lines:\n" + std::to_string(m_LinesCleared) });
-	
-
-
-		
+	m_LinesClearedText.setString(std::string{ "Lines:\n" + std::to_string(m_LinesCleared) });		
 }
 
 
@@ -124,8 +120,7 @@ void Highscore::writeToFile()
 	{
 		file << score << std::endl;				
 	}
-	file.close();	
-
+	file.close();
 }
 
 bool Highscore::ReplaceHigherScore()
@@ -153,7 +148,6 @@ bool Highscore::ReplaceHigherScore()
 
 void Highscore::loadFromFile()
 {
-
 	std::ifstream file;
 	std::string line;
 	file.open("Score.txt", std::ios::app);
