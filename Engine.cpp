@@ -65,13 +65,15 @@ void Engine::start()
     sf::Clock clock;
     sf::Time time{ sf::Time::Zero };
     m_Sound.setBackgroundMusic();
-    //GameLoop
+    
     while (m_Window.isOpen() && Quit == false)
     {
         sf::Time fallSpeed{ sf::seconds(200.f / (200.f + (m_HighScore.getLvl() * (m_HighScore.getLvl() * 30.f)))) };
         time = clock.restart();
         m_ElapsedTime += time;
         events();
+
+        //GameLoop
         if (!m_ShowMenu)
         {
             update(time);
@@ -108,10 +110,7 @@ void Engine::events()
         //Menu screen events
         if (m_ShowMenu)
         {
-            m_MenuWindow->Events(Event, m_ShowMenu);
-            if (Event.type == sf::Event::Closed)
-                m_Window.close();
-                break;
+            m_MenuWindow->Events(Event, m_ShowMenu, m_Window);
         }
         else
         {

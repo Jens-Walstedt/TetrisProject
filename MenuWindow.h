@@ -16,7 +16,8 @@ private:
 public:
 	MenuWindow(sf::Vector2f position, sf::Vector2f dimension, sf::Font font, Sound& sound);
 	void Init();
-	void Events(sf::Event event, bool &showMenu);
+	void Events(sf::Event event, bool& showMenu, sf::RenderWindow& window);
+	//void Events(sf::Event event, bool &showMenu);
 	void selected(int change);
 	void Update();
 	void Draw(sf::RenderWindow& window);

@@ -42,10 +42,13 @@ void MenuWindow::Init()
 	}
 }
 
-void MenuWindow::Events(sf::Event event, bool& showMenu)
+void MenuWindow::Events(sf::Event event, bool& showMenu, sf::RenderWindow &window)
 {
 	switch (event.type)
 	{
+	case sf::Event::Closed:
+			window.close();
+		break;
 	case sf::Event::KeyPressed:
 		if (event.key.code == sf::Keyboard::S)
 		{
@@ -67,6 +70,17 @@ void MenuWindow::Events(sf::Event event, bool& showMenu)
 			if (m_Selected == 1)
 			{
 				m_Sound.setVolume(1);
+			}
+		}
+		else if (event.key.code == sf::Keyboard::Enter)
+		{
+			if (m_Selected == 2)
+			{
+				//TODO: Restart Game
+			}
+			else if (m_Selected == 3)
+			{
+				window.close();
 			}
 		}
 		else if (event.key.code == sf::Keyboard::Escape)
