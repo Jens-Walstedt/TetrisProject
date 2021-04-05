@@ -13,7 +13,6 @@
 Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(font), m_Sound(sound)
 {
 	m_Score = 0;
-	score = m_Score;
 	m_LinesCleared = 0;
 	m_BonusScore = 0;
 	m_FieldSize = fieldsize;
@@ -36,7 +35,7 @@ Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(
 
 void Highscore::reset() 
 {
-	writeToFile();
+	writeToVector();
 	printHighscore();
 	m_LinesCleared = 0;
 	m_Score = 0;
@@ -99,25 +98,34 @@ int Highscore::getLvl() const
 	return m_LinesCleared / 10;
 }
 
-void Highscore::writeToFile()
+void Highscore::writeToVector()
 {
 	//check if score is under 3
 	if (scores.size() <= 3)
 	{
 		scores.push_back(m_Score);
 	}
+
+	//check if 3
+
 	else if (scores.size() >= 3)
 	{
 		ReplaceHigherScore();
 	}
 
-	//check if 3
-	
+
+}
+
+void Highscore::writeToFile()
+{
+
 	std::ofstream file;
+
 	file.open("Score.txt");
-	for (int score : scores) 
+
+	for (int m_Score : scores)
 	{
-		file << score << std::endl;				
+		file << m_Score << std::endl;
 	}
 	file.close();
 }
@@ -146,15 +154,20 @@ void Highscore::ReplaceHigherScore()
 
 void Highscore::loadFromFile()
 {
+
 	std::ifstream file;
 	std::string line;
+
 	file.open("Score.txt", std::ios::app);
+
 	while(file.is_open())
 		{
 			std::getline(file, line);
 			scores.push_back(std::stoi(line));
 		} 
+
 	file.close();
+
 }
 
 void Highscore::printHighscore() 

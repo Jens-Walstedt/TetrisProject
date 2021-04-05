@@ -16,10 +16,6 @@ private:
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
 
-	void writeToFile();
-
-	int score;
-
 	int m_FieldSize;
 	int m_Score;
 	int m_BonusScore;
@@ -44,6 +40,7 @@ public:
 	void printHighscore();
 	void loadFromFile();
 	void writeToVector();
+	void writeToFile();
 
 	void ReplaceHigherScore();
 

@@ -99,6 +99,7 @@ void Engine::start()
 
 void Engine::QuitText() 
 {
+    m_HighScore.writeToFile();
     std::cout << "Game over!" << std::endl;
 }
 
