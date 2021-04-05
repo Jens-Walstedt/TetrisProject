@@ -15,6 +15,7 @@ class Engine
 private:
 	sf::Sprite m_BackgroundSprite; //TEST
 	sf::Font m_Font;
+	sf::Sprite m_Keyssprite;
 
 	int m_TetroId;
 	int m_FieldSize;
@@ -27,6 +28,7 @@ private:
 
 	sf::Texture m_Texture;
 	sf::Texture m_Background;
+	sf::Texture m_Keys;
 
 	sf::RenderWindow m_Window;
 	sf::RectangleShape m_GridBorder;

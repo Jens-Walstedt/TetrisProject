@@ -36,7 +36,7 @@ Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(
 
 void Highscore::reset() 
 {
-	writeToFile();												//	< --- ---  Under construct  --- ---	
+	writeToFile();
 	printHighscore();
 	m_LinesCleared = 0;
 	m_Score = 0;
@@ -94,7 +94,6 @@ void Highscore::update(const sf::Time& dt)
 	m_LinesClearedText.setString(std::string{ "Lines:\n" + std::to_string(m_LinesCleared) });		
 }
 
-
 int Highscore::getLvl() const 
 {
 	return m_LinesCleared / 10;
@@ -103,7 +102,7 @@ int Highscore::getLvl() const
 void Highscore::writeToFile()
 {
 	//check if score is under 3
-	if (scores.size() < 3)
+	if (scores.size() <= 3)
 	{
 		scores.push_back(m_Score);
 	}
@@ -123,7 +122,7 @@ void Highscore::writeToFile()
 	file.close();
 }
 
-bool Highscore::ReplaceHigherScore()
+void Highscore::ReplaceHigherScore()
 {
 	//sort vector
 	std::sort(scores.begin(), scores.end());
@@ -143,7 +142,6 @@ bool Highscore::ReplaceHigherScore()
 	{
 		scores[current] = m_Score;
 	}
-	return isBigger;
 }
 
 void Highscore::loadFromFile()
