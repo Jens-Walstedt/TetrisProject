@@ -139,7 +139,7 @@ void Highscore::ReplaceHigherScore()
 	std::sort(scores.begin(), scores.end());
 	
 	//get lowest value and replace it 
-	int current = 0;
+	int current = -1;
 	bool isBigger = false;
 	for (int i = 0; i < scores.size(); i++)
 	{
