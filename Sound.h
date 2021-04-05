@@ -18,6 +18,7 @@ public:
 	void setBackgroundMusic();
 	void setCollisionSound();
 	void setClearLineSound();
+	void resetSpeed();
 	void speedUpMusic(float speed);
 	void setVolume(float volume);
 };

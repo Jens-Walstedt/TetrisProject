@@ -41,6 +41,7 @@ void Highscore::reset()
 	printHighscore();
 	m_LinesCleared = 0;
 	m_Score = 0;
+	m_Sound.resetSpeed();
 }
 
 void Highscore::addScore(int score) 
@@ -84,7 +85,7 @@ void Highscore::scoreSystem(int num)
 
 	if (m_currentLevel < lvl)
 	{
-		m_Sound.speedUpMusic();
+		m_Sound.speedUpMusic(0.1);
 		m_currentLevel = lvl;
 
 	}
