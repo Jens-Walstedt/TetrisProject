@@ -1,6 +1,7 @@
 #include "Grid.h"
 #include "Engine.h"
 #include <iostream>
+#include <Windows.h>
 
 FieldInfo::FieldInfo(sf::Texture& texture, int id, int fieldSize)
 {
@@ -53,6 +54,8 @@ void Grid::update(const sf::Time& gameTime)
             m_ElapsedTime = 0.f;
             removeLines();
         }
+        Sleep(m_ElapsedTime * 5.f);
+
     }
 }
 

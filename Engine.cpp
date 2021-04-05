@@ -43,6 +43,15 @@ Engine::Engine() :
     {
         std::cout << "Engine::Engine() - could not load m_Texture\n";
     };
+
+    if (!m_Keys.loadFromFile("Keys.png"))
+    {
+        std::cout << "Engine::Engine() - could not load m_Keys\n";
+    };
+
+    m_KeysSprite.setTexture(m_Keys);
+    m_KeysSprite.setPosition(5, m_FieldSize * 12);
+
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + m_FieldSize, m_GridPosition.y + m_FieldSize)
         , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font, m_Sound);
@@ -174,6 +183,9 @@ void Engine::rotate() {
 void Engine::render(){
     m_Window.clear(sf::Color::Black);
     m_Window.draw(m_BackgroundSprite);
+
+    m_Window.draw(m_KeysSprite);
+
     m_Grid->draw(m_Window);
     if (m_Tetromino) m_Window.draw(*m_Tetromino);
     m_HighScore.draw(m_Window);
@@ -182,6 +194,7 @@ void Engine::render(){
     m_Window.draw(m_ScoreBorder);
     m_Window.draw(m_PreviewBorder);
     m_Window.draw(m_HoldBorder);
+
     if (m_Hold)
     {
         m_Window.draw(*m_Hold);
