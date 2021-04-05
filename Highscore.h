@@ -34,6 +34,7 @@ private:
 public:
 
 	Highscore(int fieldsize, Sound& sound, sf::Font &font);
+
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void addScore(int m_Score);
@@ -42,7 +43,10 @@ public:
 	void update(const sf::Time& dt);
 	void printHighscore();
 	void loadFromFile();
-	bool ReplaceHigherScore();
+	void writeToVector();
+
+	void ReplaceHigherScore();
+
 
 	int getLvl() const;
 

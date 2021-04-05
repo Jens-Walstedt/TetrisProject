@@ -82,6 +82,9 @@
     <Image Include="tetrisbackground18.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Keys.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Game Theme.flac">
