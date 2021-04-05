@@ -31,6 +31,12 @@ void Sound::setClearLineSound()
 	m_ClearLineSound.setVolume(30.f);
 }
 
+void Sound::resetSpeed()
+{
+	m_CurrentSpeed = 1.f;
+	m_BackgroundMusic.setPitch(m_CurrentSpeed);
+}
+
 void Sound::speedUpMusic(float speed)
 {
 	m_BackgroundMusic.setPitch(m_CurrentSpeed += speed);
