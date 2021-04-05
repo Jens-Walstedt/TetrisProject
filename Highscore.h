@@ -16,7 +16,6 @@ private:
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
 
-	void writeToFile();
 
 	int score;
 
@@ -44,7 +43,9 @@ public:
 	void update(const sf::Time& dt);
 	void printHighscore();
 	void loadFromFile();
+	void writeToFile();
 	void writeToVector();
+	void writeToFile();
 
 	void ReplaceHigherScore();
 
