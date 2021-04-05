@@ -15,7 +15,7 @@ class Engine
 private:
 	sf::Sprite m_BackgroundSprite; //TEST
 	sf::Font m_Font;
-	sf::Sprite m_Keyssprite;
+	sf::Sprite m_KeysSprite;
 
 	int m_TetroId;
 	int m_FieldSize;

@@ -44,9 +44,13 @@ Engine::Engine() :
         std::cout << "Engine::Engine() - could not load m_Texture\n";
     };
 
-    m_Keys.loadFromFile("Keys.png");
-    m_Keyssprite.setTexture(m_Keys);
-    m_Keyssprite.setPosition(m_FieldSize * 0, m_FieldSize * 12);
+    if (!m_Keys.loadFromFile("Keys.png"))
+    {
+        std::cout << "Engine::Engine() - could not load m_Keys\n";
+    };
+
+    m_KeysSprite.setTexture(m_Keys);
+    m_KeysSprite.setPosition(5, m_FieldSize * 12);
 
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     
@@ -182,7 +186,7 @@ void Engine::render(){
     m_Window.clear(sf::Color::Black);
     m_Window.draw(m_BackgroundSprite);
 
-    m_Window.draw(m_Keyssprite);
+    m_Window.draw(m_KeysSprite);
 
     m_Grid->draw(m_Window);
     if (m_Tetromino) m_Window.draw(*m_Tetromino);
