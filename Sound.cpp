@@ -8,6 +8,7 @@ Sound::Sound()
 	m_CollisionSound.setBuffer(m_CollisionBuffer);
 	m_ClearLineSound.setBuffer(m_ClearLineBuffer);
 	m_CurrentVolume = 5.f;
+	m_CurrentSpeed = 1.f;
 }
 
 void Sound::setBackgroundMusic()
@@ -30,9 +31,15 @@ void Sound::setClearLineSound()
 	m_ClearLineSound.setVolume(30.f);
 }
 
-void Sound::speedUpMusic()
+void Sound::resetSpeed()
 {
-	m_BackgroundMusic.setPitch(1.2f);
+	m_CurrentSpeed = 1.f;
+	m_BackgroundMusic.setPitch(m_CurrentSpeed);
+}
+
+void Sound::speedUpMusic(float speed)
+{
+	m_BackgroundMusic.setPitch(m_CurrentSpeed += speed);
 }
 
 void Sound::setVolume(float change)

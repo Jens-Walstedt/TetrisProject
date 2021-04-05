@@ -16,6 +16,7 @@ Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(
 	m_LinesCleared = 0;
 	m_BonusScore = 0;
 	m_FieldSize = fieldsize;
+	m_currentLevel = 0;
 
 	m_ScoreText.setFont(m_Font);
 	m_ScoreText.setFillColor(sf::Color::White);
@@ -39,6 +40,7 @@ void Highscore::reset()
 	printHighscore();
 	m_LinesCleared = 0;
 	m_Score = 0;
+	m_Sound.resetSpeed();
 }
 
 void Highscore::addScore(int score) 
@@ -80,9 +82,10 @@ void Highscore::scoreSystem(int num)
 		break;
 	}
 
-	if (lvl>0)
+	if (m_currentLevel < lvl)
 	{
-		m_Sound.speedUpMusic();
+		m_Sound.speedUpMusic(0.05);
+		m_currentLevel = lvl;
 	}
 }
 

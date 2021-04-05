@@ -16,10 +16,14 @@ private:
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
 
+
+	int score;
+
 	int m_FieldSize;
 	int m_Score;
 	int m_BonusScore;
 	int m_LinesCleared;
+	int m_currentLevel;
 
 	Sound& m_Sound;
 
@@ -39,6 +43,7 @@ public:
 	void update(const sf::Time& dt);
 	void printHighscore();
 	void loadFromFile();
+	void writeToFile();
 	void writeToVector();
 	void writeToFile();
 

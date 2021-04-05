@@ -11,13 +11,15 @@ private:
 	sf::Sound m_CollisionSound;
 	sf::Sound m_ClearLineSound;
 	float m_CurrentVolume;
+	float m_CurrentSpeed;
 
 public:
 	Sound();
 	void setBackgroundMusic();
 	void setCollisionSound();
 	void setClearLineSound();
-	void speedUpMusic();
+	void resetSpeed();
+	void speedUpMusic(float speed);
 	void setVolume(float volume);
 };
 
