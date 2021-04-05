@@ -163,10 +163,10 @@ void Engine::events()
                 {
                     holdAndSwapTetromino();
                 }
-                else if (Event.key.code == sf::Keyboard::O)
-                {
-                    Quit = true;
-                }
+                //else if (Event.key.code == sf::Keyboard::O)
+                //{
+                //    Quit = true;
+                //}
                 break;
             }
         }
