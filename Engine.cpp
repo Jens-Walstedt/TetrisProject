@@ -45,7 +45,7 @@ Engine::Engine() :
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + m_FieldSize, m_GridPosition.y + m_FieldSize)
-        , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font);
+        , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font, m_Sound);
 
     if (!m_Background.loadFromFile("tetrisbackground1.png")) 
     {
