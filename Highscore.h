@@ -24,6 +24,7 @@ private:
 	int m_Score;
 	int m_BonusScore;
 	int m_LinesCleared;
+	int m_currentLevel;
 
 	Sound& m_Sound;
 
