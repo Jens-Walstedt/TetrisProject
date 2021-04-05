@@ -44,7 +44,7 @@ Engine::Engine() :
         std::cout << "Engine::Engine() - could not load m_Texture\n";
     };
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
-    m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
+    m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + m_FieldSize, m_GridPosition.y + m_FieldSize)
         , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font);
 
     if (!m_Background.loadFromFile("tetrisbackground1.png")) 
@@ -105,12 +105,17 @@ void Engine::events()
     sf::Event Event;
 
     while (m_Window.pollEvent(Event)) {
+        //Menu screen events
         if (m_ShowMenu)
         {
             m_MenuWindow->Events(Event, m_ShowMenu);
+            if (Event.type == sf::Event::Closed)
+                m_Window.close();
+                break;
         }
         else
         {
+            //Game screen events
             switch (Event.type) {
             case sf::Event::Closed:
                 m_Window.close();
