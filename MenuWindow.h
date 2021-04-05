@@ -19,7 +19,7 @@ public:
 	void Events(sf::Event event, bool& showMenu, sf::RenderWindow& window);
 	//void Events(sf::Event event, bool &showMenu);
 	void selected(int change);
-	void Update();
+	void Update(sf::Time gameTime);
 	void Draw(sf::RenderWindow& window);
 
 };

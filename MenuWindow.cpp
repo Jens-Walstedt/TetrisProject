@@ -108,7 +108,7 @@ void MenuWindow::selected(int change)
 
 }
 
-void MenuWindow::Update()
+void MenuWindow::Update(sf::Time gameTime)
 {
 
 }
