@@ -32,6 +32,8 @@ Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(
 	m_LinesClearedText.setFillColor(sf::Color::White);
 	m_LinesClearedText.setCharacterSize(15);
 	m_LinesClearedText.setPosition(sf::Vector2f{ 18 * (float)m_FieldSize + 3, 180.f });
+
+	loadFromFile();
 }
 
 void Highscore::reset() 
@@ -163,12 +165,13 @@ void Highscore::loadFromFile()
 
 	file.open("Score.txt", std::ios::app);
 
-	while(file.is_open())
+	if (file.is_open())
+	{
+		while (std::getline(file, line))
 		{
-			std::getline(file, line);
 			scores.push_back(std::stoi(line));
-		} 
-
+		}
+	}
 	file.close();
 
 }
