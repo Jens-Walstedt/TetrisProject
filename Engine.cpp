@@ -81,7 +81,7 @@ void Engine::start()
         time = clock.restart();
         m_ElapsedTime += time;
         events();
-
+        m_MenuWindow->Update(time);
         //GameLoop
         if (!m_ShowMenu)
         {
