@@ -103,6 +103,15 @@ void Engine::QuitText()
     std::cout << "Game over!" << std::endl;
 }
 
+void Engine::restart()
+{
+    if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions()))
+    {
+        m_Grid->clean();
+        m_HighScore.reset();
+    }
+}
+
 void Engine::update(const sf::Time& gameTime)
 {
     m_Grid->update(gameTime);
@@ -208,11 +217,8 @@ void Engine::render(){
 void Engine::createTetromino() 
 {
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
-    if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions())) 
-    {
-        m_Grid->clean();
-        m_HighScore.reset();
-    }
+
+    restart();
     
     m_TetroId = getRandomNumber(6);
     m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize, m_GridPosition});

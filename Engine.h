@@ -69,6 +69,7 @@ private:
 
 public:
 	Engine();
+	void restart();
 	void start();
 
 };
