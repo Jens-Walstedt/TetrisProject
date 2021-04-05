@@ -10,6 +10,7 @@ private:
 	sf::SoundBuffer m_ClearLineBuffer;
 	sf::Sound m_CollisionSound;
 	sf::Sound m_ClearLineSound;
+	float m_CurrentVolume;
 
 public:
 	Sound();
@@ -17,5 +18,6 @@ public:
 	void setCollisionSound();
 	void setClearLineSound();
 	void speedUpMusic();
+	void setVolume(float volume);
 };
 

@@ -7,12 +7,13 @@ Sound::Sound()
 	m_ClearLineBuffer.loadFromFile("line.wav");
 	m_CollisionSound.setBuffer(m_CollisionBuffer);
 	m_ClearLineSound.setBuffer(m_ClearLineBuffer);
+	m_CurrentVolume = 5.f;
 }
 
 void Sound::setBackgroundMusic()
 {
 	m_BackgroundMusic.play();
-	m_BackgroundMusic.setVolume(5.f);
+	m_BackgroundMusic.setVolume(m_CurrentVolume);
 	//m_BackgroundMusic.setPitch(5.5f);
 	m_BackgroundMusic.setLoop(true);
 }
@@ -32,4 +33,9 @@ void Sound::setClearLineSound()
 void Sound::speedUpMusic()
 {
 	m_BackgroundMusic.setPitch(1.2f);
+}
+
+void Sound::setVolume(float change)
+{
+	m_BackgroundMusic.setVolume(m_CurrentVolume += change);
 }
