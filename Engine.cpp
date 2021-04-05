@@ -39,7 +39,8 @@ Engine::Engine() :
     m_HoldBorder.setFillColor(sf::Color::Transparent);
 
 	m_Window.create(sf::VideoMode((20*m_FieldSize) + 100, (20*m_FieldSize)), "Tetris", sf::Style::Default);
-    if (!m_Texture.loadFromFile("TetrisTextur2.png")) {
+    if (!m_Texture.loadFromFile("TetrisTextur2.png")) 
+    {
         std::cout << "Engine::Engine() - could not load m_Texture\n";
     };
 
@@ -52,7 +53,8 @@ Engine::Engine() :
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + 32, m_GridPosition.y + 32)
         , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font);
 
-    if (!m_Background.loadFromFile("tetrisbackground1.png")) {
+    if (!m_Background.loadFromFile("tetrisbackground1.png")) 
+    {
         std::cout << "Engine::Engine() - could not load m_Background\n";
     };
     m_BackgroundSprite.setTexture(m_Background);
@@ -87,12 +89,11 @@ void Engine::start()
         }
         render();
     }
-
     QuitText();
-
 }
 
-void Engine::QuitText() {
+void Engine::QuitText() 
+{
     std::cout << "Game over!" << std::endl;
 }
 
@@ -107,16 +108,20 @@ void Engine::update(const sf::Time& gameTime)
 
 void Engine::events()
 {
-
     sf::Event Event;
 
     while (m_Window.pollEvent(Event)) {
+        //Menu screen events
         if (m_ShowMenu)
         {
             m_MenuWindow->Events(Event, m_ShowMenu);
+            if (Event.type == sf::Event::Closed)
+                m_Window.close();
+                break;
         }
         else
         {
+            //Game screen events
             switch (Event.type) {
             case sf::Event::Closed:
                 m_Window.close();
@@ -197,10 +202,11 @@ void Engine::render(){
     m_Window.display();
 }
 
-void Engine::createTetromino() {
-
+void Engine::createTetromino() 
+{
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
-    if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions())) {
+    if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions())) 
+    {
         m_Grid->clean();
         m_HighScore.reset();
     }
@@ -226,6 +232,7 @@ bool Engine::proceed(Movement move)
     {
         m_Tetromino->direction(move);
         if (move == Movement::PressDown) m_HighScore.addScore(1);
+        if (move == Movement::HardDown) m_HighScore.addScore(2);
     }
     else
     {
