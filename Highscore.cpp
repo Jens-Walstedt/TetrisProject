@@ -85,7 +85,7 @@ void Highscore::scoreSystem(int num)
 
 	if (m_currentLevel < lvl)
 	{
-		m_Sound.speedUpMusic(0.1);
+		m_Sound.speedUpMusic(0.05);
 		m_currentLevel = lvl;
 
 	}
