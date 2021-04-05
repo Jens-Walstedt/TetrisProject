@@ -12,6 +12,7 @@
 class Engine
 {
 	friend class Grid;
+	friend class MenuWindow;
 private:
 	sf::Sprite m_BackgroundSprite; //TEST
 	sf::Font m_Font;
@@ -71,5 +72,7 @@ public:
 	Engine();
 	void restart();
 	void start();
+
+	
 
 };

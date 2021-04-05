@@ -1,8 +1,8 @@
 #include "MenuWindow.h"
 
-MenuWindow::MenuWindow(sf::Vector2f position, sf::Vector2f dimension, sf::Font font, Sound& sound) :
+MenuWindow::MenuWindow(sf::Vector2f position, sf::Vector2f dimension, sf::Font font, Engine& engine) :
 	m_Font(font),
-	m_Sound(sound)
+	m_Engine(engine)
 {
 	m_Selected = 0;
 	m_Rect = sf::RectangleShape(sf::Vector2f(288, 66 + 30 * 3 + 60));
@@ -45,12 +45,12 @@ void MenuWindow::Init()
 	selected(0);
 }
 
-void MenuWindow::Events(sf::Event event, bool& showMenu, sf::RenderWindow &window)
+void MenuWindow::Events(sf::Event event, bool& showMenu)
 {
 	switch (event.type)
 	{
 	case sf::Event::Closed:
-			window.close();
+			m_Engine.m_Window.close();
 		break;
 	case sf::Event::KeyPressed:
 		if (event.key.code == sf::Keyboard::S)
@@ -81,7 +81,7 @@ void MenuWindow::Events(sf::Event event, bool& showMenu, sf::RenderWindow &windo
 			{
 				menu[0].setFillColor(sf::Color::Red);
 				m_elapseTime = true;
-				m_Sound.setVolume(-1);
+				m_Engine.m_Sound.setVolume(-1);
 			}
 		}
 		else if (event.key.code == sf::Keyboard::D)
@@ -90,18 +90,19 @@ void MenuWindow::Events(sf::Event event, bool& showMenu, sf::RenderWindow &windo
 			{
 				menu[1].setFillColor(sf::Color::Green);
 				m_elapseTime = true;
-				m_Sound.setVolume(1);
+				m_Engine.m_Sound.setVolume(1);
 			}
 		}
 		else if (event.key.code == sf::Keyboard::Enter)
 		{
 			if (m_Selected == 2)
 			{
-				//TODO: Restart Game
+				m_Engine.restart();
+				showMenu = false;
 			}
 			else if (m_Selected == 3)
 			{
-				window.close();
+				m_Engine.m_Window.close();
 			}
 		}
 		else if (event.key.code == sf::Keyboard::Escape)

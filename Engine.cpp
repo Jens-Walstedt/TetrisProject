@@ -54,7 +54,7 @@ Engine::Engine() :
 
     m_Grid = std::make_unique<Grid>(sf::Vector2i{ 10, 18 }, m_FieldSize, *this, m_GridPosition);
     m_MenuWindow = std::make_unique<MenuWindow>(sf::Vector2f(m_GridPosition.x + m_FieldSize, m_GridPosition.y + m_FieldSize)
-        , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font, m_Sound);
+        , sf::Vector2f(m_Grid->GetWidth() - 64, m_FieldSize * 5), m_Font, *this);
 
     if (!m_Background.loadFromFile("tetrisbackground1.png")) 
     {
@@ -105,11 +105,8 @@ void Engine::QuitText()
 
 void Engine::restart()
 {
-    if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions()))
-    {
         m_Grid->clean();
         m_HighScore.reset();
-    }
 }
 
 void Engine::update(const sf::Time& gameTime)
@@ -129,7 +126,7 @@ void Engine::events()
         //Menu screen events
         if (m_ShowMenu)
         {
-            m_MenuWindow->Events(Event, m_ShowMenu, m_Window);
+            m_MenuWindow->Events(Event, m_ShowMenu);
         }
         else
         {
@@ -218,8 +215,11 @@ void Engine::createTetromino()
 {
     m_Tetromino.reset(new Tetromino{ m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
 
-    restart();
-    
+    if (m_Grid->occupied(m_Tetromino->Tetromino::getBlockPositions()))
+    {
+        restart();
+    }
+
     m_TetroId = getRandomNumber(6);
     m_Preview.reset(new Tetromino{m_Texture, m_TetroId, m_FieldSize, m_GridPosition});
     m_Preview->setPosition(sf::Vector2i{ 11 * m_FieldSize, 8 * m_FieldSize });
