@@ -66,7 +66,7 @@ void MenuWindow::Events(sf::Event event, bool& showMenu, sf::RenderWindow &windo
 		}
 		else if (event.key.code == sf::Keyboard::W)
 		{
-			if (m_Selected = 1)
+			if (m_Selected == 1)
 			{
 				selected(-2);
 			}
