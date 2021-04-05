@@ -83,7 +83,7 @@ void Highscore::scoreSystem(int num)
 
 	if (lvl>0)
 	{
-		m_Sound.speedUpMusic();
+		m_Sound.speedUpMusic(0.1);
 	}
 }
 
