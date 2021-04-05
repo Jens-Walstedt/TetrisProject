@@ -45,7 +45,7 @@ public:
 	void loadFromFile();
 	void writeToFile();
 	void writeToVector();
-	void writeToFile();
+	
 
 	void ReplaceHigherScore();
 
