@@ -105,7 +105,7 @@ void Highscore::writeToFile()
 	//check if score is under 3
 	if (scores.size() < 3)
 	{
-	scores.push_back(m_Score);
+		scores.push_back(m_Score);
 	}
 	else if (scores.size() >= 3)
 	{
