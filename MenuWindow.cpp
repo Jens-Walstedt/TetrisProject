@@ -115,13 +115,13 @@ void MenuWindow::Events(sf::Event event, bool& showMenu)
 
 void MenuWindow::ChangePrevious(int change)
 {
-	if (change == 2)
+	if (m_Selected == 0)
 	{
 		menu[m_Selected].setFillColor(sf::Color::Black);
 		menu[m_Selected + 1].setFillColor(sf::Color::Black);
 
 	}
-	else if (change == -2)
+	else if (m_Selected == 1)
 	{
 		menu[m_Selected].setFillColor(sf::Color::Black);
 		menu[m_Selected - 1].setFillColor(sf::Color::Black);
@@ -134,10 +134,6 @@ void MenuWindow::ChangePrevious(int change)
 
 void MenuWindow::selected(int change)
 {
-	if (m_Selected == 3)
-	{
-		std::cout << m_Selected;
-	}
 	ChangePrevious(change);
 	m_Selected += change;
 	
@@ -149,8 +145,6 @@ void MenuWindow::selected(int change)
 	{
 		m_Selected = menu.size() - 1;
 	}
-
-	std::cout << m_Selected;
 
 	if (m_Selected == 1 ||m_Selected == 0)
 	{
@@ -178,10 +172,6 @@ void MenuWindow::Update(sf::Time gameTime)
 		m_elapseTime = false;
 	}
 }
-
-//void MenuWindow::Blink(sf::Time gameTime)
-//{
-//}
 
 void MenuWindow::Draw(sf::RenderWindow& window)
 {
