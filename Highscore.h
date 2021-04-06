@@ -43,7 +43,7 @@ public:
 	void reset();
 	void addScore(int m_Score);
 	void sumScore();
-	void scoreSystem(int num);
+	void scoreSystem(int num, sf::Sprite& sprite);
 	void update(const sf::Time& dt);
 	void printHighscore();
 	void loadFromFile();

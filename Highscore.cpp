@@ -68,7 +68,7 @@ void Highscore::sumScore()
 	m_Score += m_BonusScore;
 	m_BonusScore = 0;
 }
-void Highscore::scoreSystem(int num) 
+void Highscore::scoreSystem(int num, sf::Sprite& sprite) 
 {
 	m_LinesCleared += num;
 	int lvl = m_LinesCleared / 10;
@@ -92,6 +92,26 @@ void Highscore::scoreSystem(int num)
 
 	if (m_currentLevel < lvl)
 	{
+		switch (lvl)
+		{
+		case 0:
+			sprite.setColor(sf::Color::White);
+			break;
+		case 1:
+			sprite.setColor(sf::Color::Green);
+			break;
+		case 2:
+			sprite.setColor(sf::Color::Yellow);
+			break;
+		case 3:
+			sprite.setColor(sf::Color::Blue);
+			break;
+		case 4:
+			sprite.setColor(sf::Color::Red);
+			break;
+		default:
+			break;
+		}
 		m_Sound.speedUpMusic(0.05);
 		m_currentLevel = lvl;
 	}

@@ -142,7 +142,7 @@ void Grid::markLinesToRemove()
         }
         cntr = 0;
     }
-    m_Engine.m_HighScore.scoreSystem(cntLinesCleared);
+    m_Engine.m_HighScore.scoreSystem(cntLinesCleared, m_Engine.m_BackgroundSprite);
     std::sort(m_YRemoved.begin(), m_YRemoved.end(), [](int left, int right) {return left < right; });
 }
 
