@@ -4,12 +4,12 @@ Engine::Engine() :
     m_FieldSize(36),
     m_Sound(),
     m_Font(),
-    m_HighScore(m_FieldSize, m_Sound, m_Font),
+    m_BackgroundSprite(),
+    m_HighScore(m_FieldSize, m_Sound, m_Font, m_BackgroundSprite),
     m_GridBorder(),
     m_GridPosition(234, 64),
-    m_HoldEmpty(true),
-    m_BackgroundSprite()
-
+    m_HoldEmpty(true)
+  
     //m_Preview(nullptr)
 {
     m_Font.loadFromFile("MontserratAlternates-Bold.otf");

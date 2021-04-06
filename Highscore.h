@@ -28,6 +28,7 @@ private:
 	int m_BonusScore;
 	int m_LinesCleared;
 	int m_currentLevel;
+	sf::Sprite& m_BackgroundSprite;
 
 	Sound& m_Sound;
 
@@ -37,7 +38,7 @@ private:
 
 public:
 
-	Highscore(int fieldsize, Sound& sound, sf::Font &font);
+	Highscore(int fieldsize, Sound& sound, sf::Font &font, sf::Sprite& sprite);
 
 	void draw(sf::RenderWindow& window);
 	void reset();

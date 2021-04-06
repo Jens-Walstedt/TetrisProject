@@ -10,13 +10,14 @@
 #include <string>
 
 
-Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(font), m_Sound(sound)
+Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font, sf::Sprite& sprite) : m_ScoreText(), m_LvlText(), m_LinesClearedText(), m_Font(font), m_Sound(sound), m_BackgroundSprite(sprite)
 {
 	m_Score = 0;
 	m_LinesCleared = 0;
 	m_BonusScore = 0;
 	m_FieldSize = fieldsize;
 	m_currentLevel = 0;
+	
 
 	m_ScoreText.setFont(m_Font);
 	m_ScoreText.setFillColor(sf::Color::White);
@@ -48,6 +49,7 @@ void Highscore::reset()
 	m_LinesCleared = 0;
 	m_Score = 0;
 	m_Sound.resetSpeed();
+	m_BackgroundSprite.setColor(sf::Color::White);
 }
 
 void Highscore::addScore(int score) 
