@@ -11,10 +11,14 @@ class Highscore
 {
 
 private:
+
+	int gethighscore();
+
 	sf::Font &m_Font;
 	sf::Text m_LvlText;
 	sf::Text m_ScoreText;
 	sf::Text m_LinesClearedText;
+	sf::Text m_HighScoreText;
 
 
 	int score;

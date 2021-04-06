@@ -33,6 +33,11 @@ Highscore::Highscore(int fieldsize, Sound& sound, sf::Font &font) : m_ScoreText(
 	m_LinesClearedText.setCharacterSize(15);
 	m_LinesClearedText.setPosition(sf::Vector2f{ 18 * (float)m_FieldSize + 3, 180.f });
 
+	m_HighScoreText.setFont(m_Font);
+	m_HighScoreText.setFillColor(sf::Color::White);
+	m_HighScoreText.setCharacterSize(15);
+	m_HighScoreText.setPosition(sf::Vector2f{ 18 * (float)m_FieldSize + 3, 220.f });
+
 	loadFromFile();
 }
 
@@ -55,6 +60,7 @@ void Highscore::draw(sf::RenderWindow& window)
 	window.draw(m_ScoreText);
 	window.draw(m_LvlText);
 	window.draw(m_LinesClearedText);
+	window.draw(m_HighScoreText);
 }
 
 void Highscore::sumScore() 
@@ -95,7 +101,20 @@ void Highscore::update(const sf::Time& dt)
 {
 	m_ScoreText.setString(std::string{ "Score:\n" + std::to_string(m_Score) });
 	m_LvlText.setString(std::string{ "Level:\n" + std::to_string(m_LinesCleared / 10) });
-	m_LinesClearedText.setString(std::string{ "Lines:\n" + std::to_string(m_LinesCleared) });		
+	m_LinesClearedText.setString(std::string{ "Lines:\n" + std::to_string(m_LinesCleared) });
+	m_HighScoreText.setString(std::string{"Highscore:\n" + std::to_string(gethighscore())});
+}
+
+int Highscore::gethighscore(){
+
+	if (scores.size() == 0) {
+		return 0;
+	}
+	else
+	{
+		return scores[scores.size()-1];
+	}
+	
 }
 
 int Highscore::getLvl() const 
@@ -105,9 +124,13 @@ int Highscore::getLvl() const
 
 void Highscore::writeToVector()
 {
+	//sort vector
+	std::sort(scores.begin(), scores.end());
+
 	//check if score is under 3
 	if (scores.size() <= 3)
 	{
+		
 		scores.push_back(m_Score);
 	}
 
@@ -137,8 +160,7 @@ void Highscore::writeToFile()
 
 void Highscore::ReplaceHigherScore()
 {
-	//sort vector
-	std::sort(scores.begin(), scores.end());
+
 	
 	//get lowest value and replace it 
 	int current = -1;
